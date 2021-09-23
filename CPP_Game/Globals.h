@@ -1,7 +1,7 @@
 #pragma once
 
 namespace globals {
-	const int screenWidth = 1920;
-	const int screenHeight = 1080;
+	const int screenWidth = 640;
+	const int screenHeight = 480;
 	//const float scaleSprite = 2.0f;
 }
