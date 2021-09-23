@@ -5,3 +5,5 @@ namespace globals {
 	const int screenHeight = 480;
 	//const float scaleSprite = 2.0f;
 }
+
+//Test Sept 23
