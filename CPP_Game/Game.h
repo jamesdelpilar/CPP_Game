@@ -1,7 +1,9 @@
 #pragma once
+
 #include "Graphics.h"
 #include "KeyboardInput.h"
-#include "Sprite.h"
+#include "Player.h"
+#include "SpriteAnimation.h"
 
 //Forward Decleration
 class Graphics;
@@ -19,6 +21,8 @@ private:
 	void draw(Graphics& graphics);
 	void update(float elapsedTime);
 
-	Sprite mainPlayer;
+	Player mainPlayer;
+	//SpriteAnimation mainPlayer;
+
 };
 

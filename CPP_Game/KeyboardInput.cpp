@@ -10,28 +10,28 @@ void KeyboardInput::beginNewFrame()
 //Key is RELEASED from keyboard
 void KeyboardInput::keyUpEvent(const SDL_Event& event)
 {
-   releasedKeys[event.key.keysym.scancode] = true;
-    heldKeys[event.key.keysym.scancode] = false;
+    this->releasedKeys[event.key.keysym.scancode] = true;
+    this->heldKeys[event.key.keysym.scancode] = false;
 }
 
 //Key is HELD DOWN from keyboard
 void KeyboardInput::keyDownEvent(const SDL_Event& event)
 {
-    pressedKeys[event.key.keysym.scancode] = true;
-    heldKeys[event.key.keysym.scancode] = true;
+    this->pressedKeys[event.key.keysym.scancode] = true;
+    this->heldKeys[event.key.keysym.scancode] = true;
 }
 
-bool KeyboardInput::keyPressed(SDL_Scancode key)
+bool KeyboardInput::wasKeyPressed(SDL_Scancode key)
 {
-    return pressedKeys[key];
+    return this->pressedKeys[key];
 }
 
-bool KeyboardInput::keyReleased(SDL_Scancode key)
+bool KeyboardInput::wasKeyReleased(SDL_Scancode key)
 {
-    return releasedKeys[key];
+    return this->releasedKeys[key];
 }
 
 bool KeyboardInput::isKeyHeld(SDL_Scancode key)
 {
-    return heldKeys[key];
+    return this->heldKeys[key];
 }

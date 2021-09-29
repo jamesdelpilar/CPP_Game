@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Docs\Semester_3\midstone_project\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Docs\Semester_3\midstone_project\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\midstone_project\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\midstone_project\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -149,14 +149,18 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteAnimation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
