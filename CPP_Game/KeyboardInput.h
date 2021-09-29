@@ -11,8 +11,8 @@ public:
 	void keyUpEvent(const SDL_Event& event);
 	void keyDownEvent(const SDL_Event& event);
 
-	bool keyPressed(SDL_Scancode key);
-	bool keyReleased(SDL_Scancode key);
+	bool wasKeyPressed(SDL_Scancode key);
+	bool wasKeyReleased(SDL_Scancode key);
 	bool isKeyHeld(SDL_Scancode key);
 
 private:
