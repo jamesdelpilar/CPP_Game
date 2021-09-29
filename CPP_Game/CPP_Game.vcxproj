@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Docs\Semester_3\midstone_project\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Docs\Semester_3\midstone_project\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\midstone_project\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\midstone_project\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
