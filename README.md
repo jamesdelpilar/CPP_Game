@@ -1,5 +1,5 @@
 # CPP_Game
-2D Game using c++ and SDL@
+2D Game using c++ and SDL2
 
 Created By:
 
