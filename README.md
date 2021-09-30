@@ -1,6 +1,6 @@
 # CPP_Game
-2D Game using c++ and SDL2
+2D Game using SDL2
 
 Created By:
 
-Ivan Chernychko & James Del Pilar
+James Del Pilar & Ivan Chernychko
