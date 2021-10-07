@@ -9,6 +9,7 @@ Player::Player()
 {
 	changeInXPos = 0;
 	changeInYPos = 0;
+	facingPosition_ = LEFT;
 }
 
 Player::~Player()

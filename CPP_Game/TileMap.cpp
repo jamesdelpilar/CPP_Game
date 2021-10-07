@@ -2,6 +2,7 @@
 
 TileMap::TileMap()
 {
+	background_ = 0;
 }
 
 TileMap::~TileMap()
