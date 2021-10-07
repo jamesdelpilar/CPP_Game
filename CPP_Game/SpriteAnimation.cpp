@@ -2,6 +2,11 @@
 
 SpriteAnimation::SpriteAnimation()
 {
+	visible_ = true;
+	timeToUpdate_ = 0;
+	timeElapsed_ = 0;
+	frameIndex_ = 0;
+	currentAnimationOnce_ = 0;
 }
 
 SpriteAnimation::SpriteAnimation(Graphics& graphics, const string& filePath, int srcX, int srcY, int width, int height, float posX, float posY, float timeToUpdate) :

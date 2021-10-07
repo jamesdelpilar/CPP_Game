@@ -26,8 +26,10 @@ void Game::gameloop()
 	// Event Handler per frame
 	SDL_Event event;
 
-	this->mainPlayer = Player(graphics, 0, 0);
-
+	// Calling objects
+	this->mainPlayer = Player(graphics, 50, 50);
+	this->Level1 = TileMap("Level 1", Vector2(0,0), graphics);
+ 
 	//FrameRate
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 
@@ -92,10 +94,14 @@ void Game::gameloop()
 void Game::draw(Graphics& graphics)
 {
 	graphics.clear();
+
+	this->Level1.draw(graphics);
 	this->mainPlayer.draw(graphics);
+	
 	graphics.flip();
 }
 void Game::update(float elapsedTime)
 {
 	this->mainPlayer.update(elapsedTime);
+	this->Level1.update(elapsedTime);
 }

@@ -4,6 +4,7 @@
 #include "KeyboardInput.h"
 #include "Player.h"
 #include "SpriteAnimation.h"
+#include "TileMap.h"
 
 //Forward Decleration
 class Graphics;
@@ -21,6 +22,7 @@ private:
 	void draw(Graphics& graphics);
 	void update(float elapsedTime);
 
+	TileMap Level1;
 	Player mainPlayer;
 	//SpriteAnimation mainPlayer;
 

@@ -4,11 +4,13 @@
 #include "SpriteAnimation.h"
 
 class Graphics;
+enum class Globals;
 
 class Player : public SpriteAnimation
 {
 public:
 	Player();
+	~Player();
 	Player(Graphics& graphics, float x, float y);
 	void draw(Graphics& graphics);
 	void update(float elapsedTime);
