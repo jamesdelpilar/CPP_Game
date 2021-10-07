@@ -7,6 +7,15 @@ namespace PLAYER_CONSTS
 
 Player::Player()
 {
+	changeInXPos = 0;
+	changeInYPos = 0;
+}
+
+Player::~Player()
+{
+	/*delete &changeInXPos;
+	delete &changeInYPos;
+	delete &facingPosition_;*/
 }
 
 Player::Player(Graphics& graphics, float x, float y) : SpriteAnimation(graphics, "Assets/Sprites/Player.png", 0, 0, 32, 32, x, y, 100)
@@ -72,6 +81,7 @@ void Player::stopMoving()
 
 	this->playAnimation(this->facingPosition_ == RIGHT ? "IdleRight" : "IdleLeft");
 	this->playAnimation(this->facingPosition_ == FORWARD ? "IdleForward" : "IdleBackward");
+
 }
 
 

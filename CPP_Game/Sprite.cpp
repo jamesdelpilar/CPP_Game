@@ -2,6 +2,7 @@
 
 Sprite::Sprite() 
 {
+	//srcRect = 0;
 }
 
 Sprite::Sprite(Graphics&graphics, const string &filePath, int srcX, int srcY, int width, int height,
