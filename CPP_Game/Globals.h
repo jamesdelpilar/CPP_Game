@@ -24,7 +24,7 @@ struct Vector2
 };
 
 
-enum class Direction
+enum Direction
 {
 	LEFT, RIGHT, FORWARD, BACKWARD
 };
