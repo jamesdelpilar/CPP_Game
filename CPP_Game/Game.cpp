@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Collision.h"
 
 namespace
 {
@@ -28,7 +27,7 @@ void Game::gameloop()
 	SDL_Event event;
 
 	// Calling objects
-	this->mainPlayer = Player(graphics, 50, 50);
+	this->mainPlayer = Player(graphics, 200, 200);
 	this->Level1 = TileMap("Level 1", Vector2(0,0), graphics);
  
 	//FrameRate
@@ -57,19 +56,19 @@ void Game::gameloop()
 			return;
 		}
 
-		else if (keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true)
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true)
 		{
 			this->mainPlayer.moveLeft();
 		}
-		else if (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true)
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true)
 		{
 			this->mainPlayer.moveRight();
 		}
-		else if (keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true)
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true)
 		{
 			this->mainPlayer.moveForward();
 		}
-		else if (keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true)
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true)
 		{
 			this->mainPlayer.moveBackward();
 		}
@@ -80,7 +79,7 @@ void Game::gameloop()
 			this->mainPlayer.stopMoving();
 		}
 
-
+		
 
 		const int CURRENT_TIME_MS = SDL_GetTicks();
 		int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
@@ -103,6 +102,10 @@ void Game::draw(Graphics& graphics)
 }
 void Game::update(float elapsedTime)
 {
+	if (collider.AABB(mainPlayer.getPlayerHitBox(), SDL_Rect{ 0, 720, 1080, 10 }) == true) {
+		this->mainPlayer.wallColliding();
+	}
 	this->mainPlayer.update(elapsedTime);
 	this->Level1.update(elapsedTime);
+	
 }

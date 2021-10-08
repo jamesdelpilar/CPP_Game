@@ -14,6 +14,8 @@ public:
 	virtual void update();
 
 	void draw(Graphics& graphics, int x, int y);
+	void setX(float x) { x_ = x; }
+	void setY(float y) { y_ = y; }
 
 protected:
 	SDL_Rect srcRect;

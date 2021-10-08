@@ -9,6 +9,7 @@ Player::Player()
 {
 	changeInXPos = 0;
 	changeInYPos = 0;
+	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 10, 10};////////////////////////
 	facingPosition_ = LEFT;
 }
 
@@ -85,12 +86,18 @@ void Player::stopMoving()
 
 }
 
+// temp solution for wall collisions
+void Player::wallColliding() {
+	this->setChangeInXPos(this->getChangeInXPos() * -5.0);
+	this->setChangeInYPos(this->getChangeInYPos() * -5.0);
+}
+
 
 void Player::update(float elapsedTime)
 {
 	this->x_ += this->changeInXPos * elapsedTime;
 	this->y_ += this->changeInYPos * elapsedTime;
-
+	this->playerHitBox = { static_cast<int>(this->x_), static_cast<int>(this->y_), 32, 32 }; //////////
 	SpriteAnimation::update(elapsedTime);
 }
 

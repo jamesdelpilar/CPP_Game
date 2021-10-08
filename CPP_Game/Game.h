@@ -5,9 +5,11 @@
 #include "Player.h"
 #include "SpriteAnimation.h"
 #include "TileMap.h"
+#include "Collision.h"
 
 //Forward Decleration
 class Graphics;
+class Collision;
 
 // Info for when the GAME runs
 class Game
@@ -24,6 +26,7 @@ private:
 
 	TileMap Level1;
 	Player mainPlayer;
+	Collision collider;
 	//SpriteAnimation mainPlayer;
 
 };
