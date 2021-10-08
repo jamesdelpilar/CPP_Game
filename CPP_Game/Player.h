@@ -4,7 +4,7 @@
 #include "SpriteAnimation.h"
 
 class Graphics;
-enum class Globals;
+enum Globals;
 
 class Player : public SpriteAnimation
 {

@@ -6,7 +6,7 @@
 #include "SpriteAnimation.h"
 #include "TileMap.h"
 
-//Forward Decleration
+//Forward Declaration
 class Graphics;
 
 // Info for when the GAME runs
@@ -18,7 +18,7 @@ public:
 
 private:
 	// Loops Every Frame
-	void gameloop();
+	void gameLoop();
 	void draw(Graphics& graphics);
 	void update(float elapsedTime);
 

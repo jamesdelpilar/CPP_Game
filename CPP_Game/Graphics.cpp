@@ -2,43 +2,43 @@
 
 Graphics::Graphics()
 {
-	SDL_CreateWindowAndRenderer(globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT, 0, &this->window, &this->renderer);
-	SDL_SetWindowTitle(this->window, "Title of Game");
-	//SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640
+	SDL_CreateWindowAndRenderer(globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT, 0, &this->window_, &this->renderer_);
+	SDL_SetWindowTitle(this->window_, "Title of Game");
 }
 
 Graphics::~Graphics()
 {
-	SDL_DestroyWindow(this->window);
+	SDL_DestroyWindow(this->window_);
+	SDL_DestroyRenderer(this->renderer_);
 }
 
 SDL_Surface* Graphics::loadImage(const string& filePath)
 {
-	if (this->spriteSheets.count(filePath) == 0) 
+	if (this->spriteSheets_.count(filePath) == 0) 
 	{
-		this->spriteSheets[filePath] = IMG_Load(filePath.c_str());
+		this->spriteSheets_[filePath] = IMG_Load(filePath.c_str());
 	}
-	return this->spriteSheets[filePath];
+	return this->spriteSheets_[filePath];
 }
 
 void Graphics::blitSurface(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
 {
-	SDL_RenderCopy(this->renderer, texture, srcRect, destRect);
+	SDL_RenderCopy(this->renderer_, texture, srcRect, destRect);
 
 }
 
 void Graphics::flip()
 {
-	SDL_RenderPresent(this->renderer);
+	SDL_RenderPresent(this->renderer_);
 }
 
 void Graphics::clear()
 {
-	SDL_RenderClear(this->renderer);
+	SDL_RenderClear(this->renderer_);
 }
 
 SDL_Renderer* Graphics::getRenderer() const
 {
-	return this->renderer;
+	return this->renderer_;
 }
 

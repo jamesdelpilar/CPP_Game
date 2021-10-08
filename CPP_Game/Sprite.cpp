@@ -5,7 +5,7 @@ Sprite::Sprite()
 	srcRect = { 0, 0, 0, 0 };
 	x_ = 0;
 	y_ = 0;
-	spriteSheet = 0;
+	spriteSheet = nullptr;
 }
 
 Sprite::Sprite(Graphics&graphics, const string &filePath, int srcX, int srcY, int width, int height,
@@ -17,13 +17,14 @@ Sprite::Sprite(Graphics&graphics, const string &filePath, int srcX, int srcY, in
 	this->srcRect.h = height;
 
 	this->spriteSheet = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage(filePath));
-	if (this->spriteSheet == NULL) {
+	if (this->spriteSheet == nullptr) {
 		std::cout << "Image Load Error" << std::endl;
 	}
 }
 
-Sprite::~Sprite() 
+Sprite::~Sprite()
 {
+
 }
 
 void Sprite::draw(Graphics &graphics, int x, int y) 

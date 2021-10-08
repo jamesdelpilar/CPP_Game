@@ -3,23 +3,23 @@
 
 namespace
 {
-	const int FPS = 60;
-	const int MAX_FRAME_TIME = 1000 / FPS; // 1000ms = 1sec
+	constexpr int FPS = 60;
+	constexpr int MAX_FRAME_TIME = 1000 / FPS; // 1000ms = 1sec
 }
 
 Game::Game()
 {
 	// Initializes everything (SDL2, SDL Mixer, SDL TTF, SDL Image)
 	SDL_Init(SDL_INIT_EVERYTHING);
-	this->gameloop();
+	this->gameLoop();
 }
 
 Game::~Game()
 {
-
+	
 }
 
-void Game::gameloop()
+void Game::gameLoop()
 {
 	Graphics graphics;
 	KeyboardInput keyboardInput;
@@ -34,7 +34,7 @@ void Game::gameloop()
 	//FrameRate
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 
-	//Starting the gameloop
+	//Starting the gameLoop
 	while (true)
 	{
 		keyboardInput.beginNewFrame();
@@ -57,19 +57,19 @@ void Game::gameloop()
 			return;
 		}
 
-		else if (keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true)
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true)
 		{
 			this->mainPlayer.moveLeft();
 		}
-		else if (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true)
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true)
 		{
 			this->mainPlayer.moveRight();
 		}
-		else if (keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true)
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true)
 		{
 			this->mainPlayer.moveForward();
 		}
-		else if (keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true)
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true)
 		{
 			this->mainPlayer.moveBackward();
 		}

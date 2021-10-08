@@ -2,7 +2,7 @@
 
 namespace PLAYER_CONSTS
 {
-	const float WALK_SPEED = 0.4f;
+	constexpr float WALK_SPEED = 0.4f;
 }
 
 Player::Player()

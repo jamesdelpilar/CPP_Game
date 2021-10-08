@@ -2,11 +2,12 @@
 
 TileMap::TileMap()
 {
-	background_ = 0;
+	background_ = nullptr;
 }
 
 TileMap::~TileMap()
 {
+	
 }
 
 TileMap::TileMap(string mapName, Vector2 spawnPoint, Graphics& graphics) :
