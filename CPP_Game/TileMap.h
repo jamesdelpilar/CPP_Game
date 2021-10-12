@@ -36,8 +36,8 @@ private:
 	Vector2 spawnPoint_;
 	Vector2 size_;
 	Vector2 tileSize_;
-	std::vector<Tile> tileList_;
-	std::vector<Tileset> tileSets_;
+	//std::vector<Tile> tileList_;
+	//std::vector<Tileset> tileSets_;
 
 	SDL_Texture *background_;
 
