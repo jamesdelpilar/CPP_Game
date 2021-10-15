@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Collision.h"
 
 namespace
 {
@@ -57,21 +56,42 @@ void Game::gameLoop()
 			return;
 		}
 
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true)
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true   && 
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) && 
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) && 
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveLeft();
 		}
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true)
+
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveRight();
 		}
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true)
+
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
-			this->mainPlayer.moveForward();
+			this->mainPlayer.moveUp();
 		}
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true)
+
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)))
 		{
-			this->mainPlayer.moveBackward();
+			this->mainPlayer.moveDown();
+		}
+
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
+		{
+			std::cout << "Key Pressed" << std::endl;
+			this->mainPlayer.attackDown();
 		}
 
 		if (!keyboardInput.isKeyHeld(SDL_SCANCODE_A) && !keyboardInput.isKeyHeld(SDL_SCANCODE_D) && !keyboardInput.isKeyHeld(SDL_SCANCODE_S)
@@ -79,8 +99,6 @@ void Game::gameLoop()
 		{
 			this->mainPlayer.stopMoving();
 		}
-
-
 
 		const int CURRENT_TIME_MS = SDL_GetTicks();
 		int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;

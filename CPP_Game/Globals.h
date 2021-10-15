@@ -4,7 +4,7 @@ namespace globals
 {
 	const int SCREEN_WIDTH = 1280;
 	const int SCREEN_HEIGHT = 720;
-	const float SCALE_SPRITE = 1.0f;
+	const float SCALE_SPRITE = 2.0f;
 }
 
 // For animation offsets, if necessary
@@ -26,5 +26,5 @@ struct Vector2
 
 enum Direction
 {
-	LEFT, RIGHT, FORWARD, BACKWARD
+	LEFT, RIGHT, UP, DOWN
 };

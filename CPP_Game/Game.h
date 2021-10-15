@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Collision.h"
 #include "Graphics.h"
 #include "KeyboardInput.h"
 #include "Player.h"
