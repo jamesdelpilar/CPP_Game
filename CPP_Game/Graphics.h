@@ -9,9 +9,10 @@
 using std::map;
 using std::string;
 
-//Forward Decleration
+//Forward Declaration
 struct SDL_Window;
 struct SDL_Renderer;
+
 class Graphics
 {
 
@@ -34,10 +35,10 @@ public:
 
 
 private:
-	SDL_Window* window;
-	SDL_Renderer* renderer;
+	SDL_Window* window_;
+	SDL_Renderer* renderer_;
 
-	map<string, SDL_Surface*> spriteSheets;
+	map<string, SDL_Surface*> spriteSheets_;
 
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Collision.h"
 #include "Graphics.h"
 #include "KeyboardInput.h"
 #include "Player.h"
@@ -7,7 +8,7 @@
 #include "TileMap.h"
 #include "Collision.h"
 
-//Forward Decleration
+//Forward Declaration
 class Graphics;
 class Collision;
 
@@ -20,7 +21,7 @@ public:
 
 private:
 	// Loops Every Frame
-	void gameloop();
+	void gameLoop();
 	void draw(Graphics& graphics);
 	void update(float elapsedTime);
 

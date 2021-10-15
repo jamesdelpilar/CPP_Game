@@ -6,7 +6,7 @@ SpriteAnimation::SpriteAnimation()
 	timeToUpdate_ = 0;
 	timeElapsed_ = 0;
 	frameIndex_ = 0;
-	currentAnimationOnce_ = 0;
+	currentAnimationOnce_ = false;
 }
 
 SpriteAnimation::SpriteAnimation(Graphics& graphics, const string& filePath, int srcX, int srcY, int width, int height, float posX, float posY, float timeToUpdate) :

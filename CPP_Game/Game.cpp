@@ -2,23 +2,23 @@
 
 namespace
 {
-	const int FPS = 60;
-	const int MAX_FRAME_TIME = 1000 / FPS; // 1000ms = 1sec
+	constexpr int FPS = 60;
+	constexpr int MAX_FRAME_TIME = 1000 / FPS; // 1000ms = 1sec
 }
 
 Game::Game()
 {
 	// Initializes everything (SDL2, SDL Mixer, SDL TTF, SDL Image)
 	SDL_Init(SDL_INIT_EVERYTHING);
-	this->gameloop();
+	this->gameLoop();
 }
 
 Game::~Game()
 {
-
+	
 }
 
-void Game::gameloop()
+void Game::gameLoop()
 {
 	Graphics graphics;
 	KeyboardInput keyboardInput;
@@ -33,7 +33,7 @@ void Game::gameloop()
 	//FrameRate
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 
-	//Starting the gameloop
+	//Starting the gameLoop
 	while (true)
 	{
 		keyboardInput.beginNewFrame();
@@ -56,21 +56,42 @@ void Game::gameloop()
 			return;
 		}
 
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true)
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true   && 
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) && 
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) && 
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveLeft();
 		}
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true)
+
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveRight();
 		}
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true)
+
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
-			this->mainPlayer.moveForward();
+			this->mainPlayer.moveUp();
 		}
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true)
+
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)))
 		{
-			this->mainPlayer.moveBackward();
+			this->mainPlayer.moveDown();
+		}
+
+		if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
+		{
+			std::cout << "Key Pressed" << std::endl;
+			this->mainPlayer.attackDown();
 		}
 
 		if (!keyboardInput.isKeyHeld(SDL_SCANCODE_A) && !keyboardInput.isKeyHeld(SDL_SCANCODE_D) && !keyboardInput.isKeyHeld(SDL_SCANCODE_S)
@@ -78,8 +99,6 @@ void Game::gameloop()
 		{
 			this->mainPlayer.stopMoving();
 		}
-
-		
 
 		const int CURRENT_TIME_MS = SDL_GetTicks();
 		int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;

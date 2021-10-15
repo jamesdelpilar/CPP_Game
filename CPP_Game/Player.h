@@ -5,7 +5,7 @@
 #include "Collision.h"////////////////////////
 
 class Graphics;
-enum class Globals;
+enum Globals;
 
 class Player : public SpriteAnimation
 {
@@ -20,10 +20,17 @@ public:
 	virtual void setupAnimations();
 
 	//Moves player by change in x and y Position
-	void moveForward();
-	void moveBackward();
+	void moveUp();
+	void moveDown();
 	void moveRight();
 	void moveLeft();
+
+	//Allows player to switch from moving animations to attacking animations
+
+	void attackUp();
+	void attackDown();
+	void attackRight();
+	void attackLeft();
 
 	// Stops animation and plays idle animation
 	void stopMoving();
