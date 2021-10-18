@@ -4,6 +4,7 @@
 #include "SpriteAnimation.h"
 #include "Collision.h"////////////////////////
 
+
 class Graphics;
 enum Globals;
 
@@ -26,7 +27,6 @@ public:
 	void moveLeft();
 
 	//Allows player to switch from moving animations to attacking animations
-
 	void attackUp();
 	void attackDown();
 	void attackRight();

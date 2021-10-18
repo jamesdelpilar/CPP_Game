@@ -28,8 +28,9 @@ void Game::gameLoop()
 
 	// Calling objects
 	this->mainPlayer = Player(graphics, 200, 200);
+	//this->enemy1 = Enemy(graphics, 300, 100);
 	this->Level1 = TileMap("Level 1", Vector2(0,0), graphics);
- 
+	
 	//FrameRate
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 
@@ -62,6 +63,11 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveLeft();
+			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
+			{
+				std::cout << "ATTACK LEFT" << std::endl;
+				this->mainPlayer.attackLeft();
+			}
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
@@ -70,6 +76,11 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveRight();
+			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
+			{
+				std::cout << "ATTACK RIGHT" << std::endl;
+				this->mainPlayer.attackRight();
+			}
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true &&
@@ -78,6 +89,11 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveUp();
+			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
+			{
+				std::cout << "ATTACK UP" << std::endl;
+				this->mainPlayer.attackUp();
+			}
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true &&
@@ -86,12 +102,11 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)))
 		{
 			this->mainPlayer.moveDown();
-		}
-
-		if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
-		{
-			std::cout << "Key Pressed" << std::endl;
-			this->mainPlayer.attackDown();
+			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
+			{
+				std::cout << "ATTACK DOWN" << std::endl;
+				this->mainPlayer.attackDown();
+			}
 		}
 
 		if (!keyboardInput.isKeyHeld(SDL_SCANCODE_A) && !keyboardInput.isKeyHeld(SDL_SCANCODE_D) && !keyboardInput.isKeyHeld(SDL_SCANCODE_S)
@@ -116,15 +131,18 @@ void Game::draw(Graphics& graphics)
 
 	this->Level1.draw(graphics);
 	this->mainPlayer.draw(graphics);
+	//this->enemy1.draw(graphics);
 	
 	graphics.flip();
 }
 void Game::update(float elapsedTime)
 {
-	if (collider.AABB(mainPlayer.getPlayerHitBox(), SDL_Rect{ 0, 720, 1080, 10 }) == true) {
+	if (collider.AABB(mainPlayer.getPlayerHitBox(), SDL_Rect{ 0, 720, 1080, 10 }) == true) 
+	{
 		this->mainPlayer.wallColliding();
 	}
 	this->mainPlayer.update(elapsedTime);
+	//this->enemy1.update(elapsedTime);
 	this->Level1.update(elapsedTime);
 	
 }

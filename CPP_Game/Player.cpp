@@ -20,9 +20,9 @@ Player::~Player()
 	delete &facingPosition_;*/
 }
 
-Player::Player(Graphics& graphics, float x, float y) : SpriteAnimation(graphics, "Assets/Sprites/LinkShieldMove.png", 0, 0, 21, 27, x, y, 100)
+Player::Player(Graphics& graphics, float x, float y) : SpriteAnimation(graphics, "Assets/Sprites/LinkSprite.png", 0, 0, 21, 27, x, y, 100)
 {
-	graphics.loadImage("Assets/Sprites/LinkShieldMove.png");
+	graphics.loadImage("Assets/Sprites/LinkSprite.png");
 	this->setupAnimations();
 	//this->playAnimation("MoveBackward");
 }
@@ -39,10 +39,16 @@ void Player::setupAnimations()
 	this->addAnimation(7, 0, 54, "MoveRight", 21, 25, Vector2(0, 0));
 	this->addAnimation(7, 0, 27, "MoveDown", 21, 27, Vector2(0, 0));
 
-	this->addAnimation(1, 0, 0, "AttackUp", 21, 26, Vector2(0, 0));
-	this->addAnimation(1, 0, 0, "AttackLeft", 21, 25, Vector2(0, 0));
-	this->addAnimation(1, 0, 0, "AttackRight", 21, 25, Vector2(0, 0));
-	this->addAnimation(1, 0, 0, "AttackDown", 21, 27, Vector2(0, 0));
+	this->addAnimation(3, 0, 137, "AttackUp", 25, 35, Vector2(0, 0));
+	this->addAnimation(3, 0, 197, "AttackLeft", 35, 25, Vector2(0, 0));
+	this->addAnimation(3, 0, 173, "AttackRight", 35, 25, Vector2(0, 0));
+	this->addAnimation(3, 0, 222, "AttackDown", 25, 35, Vector2(0, 0));
+
+	//this->addAnimation(3, 0, 137, "AttackUp", 40, 40, Vector2(0, 0));
+	//this->addAnimation(3, 0, 197, "AttackLeft", 40, 40, Vector2(0, 0));
+	//this->addAnimation(3, 0, 173, "AttackRight", 40, 40, Vector2(0, 0));
+	//this->addAnimation(3, 0, 222, "AttackDown", 40, 40, Vector2(0, 0));
+
 }
 
 void Player::animationComplete(string currentAnimation)
@@ -78,36 +84,22 @@ void Player::moveDown()
 
 void Player::attackUp()
 {
-	if (UP)
-	{
-		this->playAnimation("AttackUp");
-	}
-		
+	this->playAnimation("AttackUp");
 }
 
 void Player::attackDown()
 {
-	if (DOWN)
-	{
 		this->playAnimation("AttackDown");
-	}
 }
 
 void Player::attackLeft()
 {
-	if (LEFT)
-	{
 		this->playAnimation("AttackLeft");
-	}
-	
 }
 
 void Player::attackRight()
 {
-	if (RIGHT)
-	{
 		this->playAnimation("AttackRight");
-	}
 }
 
 

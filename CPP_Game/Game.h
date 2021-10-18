@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Collision.h"
+#include "Enemy.h"
 #include "Graphics.h"
 #include "KeyboardInput.h"
 #include "Player.h"
@@ -27,8 +28,8 @@ private:
 
 	TileMap Level1;
 	Player mainPlayer;
+	//Enemy enemy1;
 	Collision collider;
-	//SpriteAnimation mainPlayer;
 
 };
 
