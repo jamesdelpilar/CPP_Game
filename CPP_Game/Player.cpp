@@ -10,7 +10,7 @@ Player::Player()
 	changeInXPos = 0;
 	changeInYPos = 0;
 	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 10, 10};////////////////////////
-	facingPosition_ = LEFT;
+	//facingPosition_ = LEFT;
 }
 
 Player::~Player()
@@ -39,10 +39,10 @@ void Player::setupAnimations()
 	this->addAnimation(7, 0, 54, "MoveRight", 21, 25, Vector2(0, 0));
 	this->addAnimation(7, 0, 27, "MoveDown", 21, 27, Vector2(0, 0));
 
-	this->addAnimation(3, 0, 137, "AttackUp", 25, 35, Vector2(0, 0));
-	this->addAnimation(3, 0, 197, "AttackLeft", 35, 25, Vector2(0, 0));
-	this->addAnimation(3, 0, 173, "AttackRight", 35, 25, Vector2(0, 0));
-	this->addAnimation(3, 0, 222, "AttackDown", 25, 35, Vector2(0, 0));
+	this->addAnimation(1, 0, 137, "AttackUp", 25, 35, Vector2(0, 0));
+	this->addAnimation(1, 0, 197, "AttackLeft", 35, 25, Vector2(0, 0));
+	this->addAnimation(1, 0, 173, "AttackRight", 35, 25, Vector2(0, 0));
+	this->addAnimation(1, 0, 222, "AttackDown", 25, 35, Vector2(0, 0));
 
 	//this->addAnimation(3, 0, 137, "AttackUp", 40, 40, Vector2(0, 0));
 	//this->addAnimation(3, 0, 197, "AttackLeft", 40, 40, Vector2(0, 0));
@@ -109,11 +109,53 @@ void Player::stopMoving()
 	this->changeInYPos = 0.0f;
 
 
+
 	//this->playAnimation(this->facingPosition_ == RIGHT ? "IdleRight" : "IdleLeft" || this->facingPosition_ == UP ? "IdleForward" : "IdleBackward");
 
 
 	this->playAnimation(this->facingPosition_ == RIGHT ? "IdleRight" : "IdleLeft");
 	this->playAnimation(this->facingPosition_ == UP ? "IdleForward" : "IdleBackward");
+
+	//if 
+	//if (this->facingPosition_ == RIGHT)
+	//{
+	//	this->playAnimation("IdleRight");
+	//}
+
+	//else if (this->facingPosition_ == UP)
+	//{
+	//	this->playAnimation("IdleUp");
+	//}
+	//else if  (this->facingPosition_ == DOWN)
+	//{
+	//	this->playAnimation("IdleDown");
+	//}
+	//else if (this->facingPosition_ == LEFT)
+	//{
+	//	this->playAnimation("IdleLeft");
+	//}
+
+	//switch (facingPosition_)
+	//{
+	//case LEFT:
+	//	
+	//	this->playAnimation("IdleLeft");
+	//	break;
+
+	//case RIGHT:
+	//	this->playAnimation("IdleRight");
+	//	break;
+	//case UP:
+	//	this->playAnimation("IdleUp");
+	//	break;
+	//case DOWN:
+	//	this->playAnimation("IdleDown");
+	//	break;
+
+	//default:
+	//	//this->playAnimation("IdleLeft");
+	//	break;
+	//}
 
 }
 

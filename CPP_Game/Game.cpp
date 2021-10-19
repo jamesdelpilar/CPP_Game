@@ -63,6 +63,7 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveLeft();
+			std::cout << "MOVE LEFT" << std::endl;
 			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
 			{
 				std::cout << "ATTACK LEFT" << std::endl;
@@ -109,6 +110,35 @@ void Game::gameLoop()
 			}
 		}
 
+		//if (this->mainPlayer.facingPosition_ == RIGHT) 
+		//{
+		//	
+		//		if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
+		//		{
+		//			std::cout << "ATTACK RIGHT" << std::endl;
+		//			this->mainPlayer.attackRight();
+		//			//(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)
+		//		}
+		//	
+
+
+
+
+
+
+
+
+
+
+		//	//if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true)
+		//	//{
+		//	//	std::cout << "ATTACK RIGHT" << std::endl;
+		//	//	this->mainPlayer.attackRight();
+		//	//	//(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)
+		//	//}
+		//	
+		//}
+
 		if (!keyboardInput.isKeyHeld(SDL_SCANCODE_A) && !keyboardInput.isKeyHeld(SDL_SCANCODE_D) && !keyboardInput.isKeyHeld(SDL_SCANCODE_S)
 			&& !keyboardInput.isKeyHeld(SDL_SCANCODE_W))
 		{
@@ -121,6 +151,8 @@ void Game::gameLoop()
 		LAST_UPDATE_TIME = CURRENT_TIME_MS;
 
 		this->draw(graphics);
+
+		std::cout << mainPlayer.facingPosition_ << std::endl;
 	}
 }
 
