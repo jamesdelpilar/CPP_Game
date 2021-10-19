@@ -4,6 +4,7 @@
 #include "SpriteAnimation.h"
 #include "Collision.h"////////////////////////
 
+
 class Graphics;
 enum Globals;
 
@@ -26,7 +27,6 @@ public:
 	void moveLeft();
 
 	//Allows player to switch from moving animations to attacking animations
-
 	void attackUp();
 	void attackDown();
 	void attackRight();
@@ -43,9 +43,10 @@ public:
 	void setChangeInXPos(float changeInXPos_) { changeInXPos = changeInXPos_; }
 	void setChangeInYPos(float changeInYPos_) { changeInYPos = changeInYPos_; }
 
+	Direction facingPosition_;
 private:
 	float changeInXPos, changeInYPos;
 	SDL_Rect playerHitBox;/////////////////////
-	Direction facingPosition_;
+	
 
 };
