@@ -26,8 +26,8 @@ private:
 	void draw(Graphics& graphics);
 	void update(float elapsedTime);
 
-	TileMap Level1;
 	Player mainPlayer;
+	TileMap Level1;
 	//Enemy enemy1;
 	Collision collider;
 

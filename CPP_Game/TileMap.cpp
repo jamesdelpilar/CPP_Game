@@ -2,7 +2,7 @@
 
 TileMap::TileMap()
 {
-	background_ = nullptr;
+	backgroundTex_ = nullptr;
 }
 
 TileMap::~TileMap()
@@ -17,109 +17,144 @@ TileMap::TileMap(string mapName, Vector2 spawnPoint, Graphics& graphics) :
 
 void TileMap::loadTileMap(string mapName, Graphics& graphics)
 {
-	//Temp Code
-	this->background_ = SDL_CreateTextureFromSurface(graphics.getRenderer(),
-		graphics.loadImage("Assets/TileMap/TXTilesetGrass.png"));
-	
-	this->size_ = Vector2(1920, 1080);
+	//Load .tmx file
+	XMLDocument doc;
+	std::stringstream ss;
+	ss << "Levels/" << mapName << ".tmx"; 
+	doc.LoadFile(ss.str().c_str());
 
-	////.tmx file
-	//XMLDocument doc;
-	//std::stringstream ss;
+	XMLElement* mapNode = doc.FirstChildElement("map");
 
-	//// Loads .tmx file in the Asset folder
-	//ss << "Assets/TileMap/" << mapName << ".tmx";
-	//doc.LoadFile(ss.str().c_str());
+	//Get the width and the height of the whole map and store it in _size
+	int width, height;
+	mapNode->QueryIntAttribute("width", &width);
+	mapNode->QueryIntAttribute("height", &height);
+	this->size_ = Vector2(width, height);
 
-	//XMLElement* mapNode = doc.FirstChildElement("map");
+	//Get the width and the height of the tiles and store it in _tileSize
+	int tileWidth, tileHeight;
+	mapNode->QueryIntAttribute("tilewidth", &tileWidth);
+	mapNode->QueryIntAttribute("tileheight", &tileHeight);
+	this->tileSize_ = Vector2(tileWidth, tileHeight);
 
-	//// Storing width and height in size_ 
-	//int width, height;
-	//mapNode->QueryIntAttribute("width", &width);
-	//mapNode->QueryIntAttribute("height", &height);
-	//this->size_ = Vector2(width, height);
+	//Loading the tilesets
+	XMLElement* pTileset = mapNode->FirstChildElement("tileset");
+	if (pTileset != nullptr)
+	{
+		while (pTileset)
+		{
+			int firstgid;
+			const char* source = pTileset->FirstChildElement("image")->Attribute("source");
+			char* path;
+			std::stringstream ss;
+			ss << "Levels/" << source;
+			pTileset->QueryIntAttribute("firstgid", &firstgid);
+			SDL_Texture* tex = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage(ss.str()));
+			this->tilesets_.push_back(Tileset(tex, firstgid));
 
-	//// Storing width and height of the tiles in tileSize_
-	//int tileWidth, tileHeight;
-	//mapNode->QueryIntAttribute("tilewidth", &tileWidth);
-	//mapNode->QueryIntAttribute("tileheight", &tileHeight);
-	//this->tileSize_ = Vector2(tileWidth, tileHeight);
+			pTileset = pTileset->NextSiblingElement("tileset");
+		}
+	}
 
-	////Loading the Tilesets
-	//XMLElement* pTileset = mapNode->FirstChildElement("tileset");
-	//if (pTileset != nullptr)
-	//{
-	//	while (pTileset)
-	//	{
-	//		int firstGid;
-	//		const char* source = pTileset->FirstChildElement("image")->Attribute("source");
-	//		char* path;
-	//		std::stringstream ss;
-	//		ss << "Assets/TileMap/" << source;
-	//		pTileset->QueryIntAttribute("firstgid", &firstGid);
-	//		SDL_Texture* tex = SDL_CreateTextureFromSurface(graphics.getRenderer(),
-	//			graphics.loadImage(ss.str()));
-	//		this->tileSets_.push_back(Tileset(tex, firstGid));
+	//Loading the layers
+	XMLElement* pLayer = mapNode->FirstChildElement("layer");
+	if(pLayer != NULL)
+	{
+		while (pLayer)
+		{
+			//Loading "data"
+			XMLElement* pData = pLayer->FirstChildElement("data");
+			if (pData != NULL)
+			{
+				while (pData)
+				{
+					//Loading "tile"
+					XMLElement* pTile = pData->FirstChildElement("tile");
+					if (pTile != NULL)
+					{
+						int tileCounter = 0;
+						while (pTile)
+						{
+							//Building each tile
+							if (pTile->IntAttribute("gid") == 0)
+							{
+								tileCounter++;
+								if(pTile->NextSiblingElement("tile"))
+								{
+									pTile = pTile->NextSiblingElement("tile");
+									continue;
+								}
+								else
+								{
+									break;
+								}
+							}
 
-	//		pTileset = pTileset->NextSiblingElement(("tileset"));
-	//	}
-	//}
+							// Grabbing tileset for specific gid
+							int gid = pTile->IntAttribute("gid");
+							Tileset tls;
+							for (int i = 0; i < this->tilesets_.size(); i++)
+							{
+								if (this->tilesets_[i].FirstGid <= gid)
+								{
+									//Tileset 
+									tls = this->tilesets_.at(i);
+									break;
+								}
+							}
 
-	//// Loading TileMap layers
-	//XMLElement* pLayer = mapNode->FirstChildElement("layer");
-	//if (pLayer != nullptr)
-	//{
-	//	while (pLayer)
-	//	{
-	//		// Loading DATA	ELEMENT
-	//		XMLElement* pData = pLayer->FirstChildElement("data");
-	//		if (pData != nullptr)
-	//		{
-	//			while (pData)
-	//			{
-	//				pData = pData->NextSiblingElement("data");
-	//			}
+							if (tls.FirstGid == -1)
+							{
+								// No tileset found
+								tileCounter++;
+								if (pTile->NextSiblingElement("tile"))
+								{
+									pTile = pTile->NextSiblingElement("tile");
+									continue;
+								}
+								else
+								{
+									break;
+								}
+							}
 
-	//			// Loading TILE ELEMENT
-	//			XMLElement* pTile = pData->FirstChildElement("tile");
-	//			if (pTile != nullptr)
-	//			{
-	//				int tileCounter = 0;
-	//				while (pTile)
-	//				{
-	//					//Each tile is being build | If gid is 0, tiles will not be drawn
-	//					if (pTile->IntAttribute("gid") == 0)
-	//					{
-	//						tileCounter++;
-	//						if (pTile->NextSiblingElement("tile"))
-	//						{
-	//							pTile = pTile->NextSiblingElement("tile");
-	//							continue;
-	//						}
-	//						else
-	//						{
-	//							break;
-	//						}
-	//					}
+							// Grabbing tile positions of .tmx
+							int xTile = 0;
+							int yTile = 0;
 
-	//					// Get tileset
-	//					int gid = pTile->IntAttribute("gid");
-	//					Tileset tls;
-	//					for (int i= 0; i < this->tileSets_.size(); i++)
-	//					{
-	//						if (this->tileSets_[i].firstGid <= gid)
-	//						{
-	//							tls = this->tileSets_.at(i);
-	//							break;
-	//						}
-	//					}
-	//					pTile = pTile->NextSiblingElement("tile");
-	//				}
-	//			}
-	//		}
-	//		pLayer = pLayer->NextSiblingElement("layer");
-	//	}
-	//}
+							xTile = tileCounter % width;
+							xTile *= tileWidth;
+
+							yTile += tileHeight * (tileCounter / width);
+
+							Vector2 finalTilePos = Vector2(xTile, yTile);
+
+							// Calculating the tile's position
+							int tilesetWidth, tilesetHeight;
+							SDL_QueryTexture(tls.Texture, NULL, NULL, &tilesetWidth, &tilesetHeight);
+
+							int tilesetXTile = gid % (tilesetWidth / tileWidth) - 1;
+							tilesetXTile *= tileWidth;
+
+							int tilesetYTile = 0;
+							int amount = (gid / (tilesetWidth / tileWidth));
+							tilesetYTile = tileHeight * amount;
+							Vector2 finalTilesetPos = Vector2(tilesetXTile, tilesetYTile);
+
+							// Build tile and put into tile list
+							Tile tile(tls.Texture, Vector2(tileWidth, tileHeight), finalTilesetPos, finalTilePos);
+							this->tileList_.push_back(tile);
+							tileCounter++;
+
+							pTile = pTile->NextSiblingElement("tile");
+						}
+					}
+					pData = pData->NextSiblingElement("data");
+				}
+			}
+			pLayer = pLayer->NextSiblingElement("layer");
+		}
+	}
 }
 
 void TileMap::update(int elapsedTime)
@@ -128,22 +163,27 @@ void TileMap::update(int elapsedTime)
 
 void TileMap::draw(Graphics& graphics)
 {
-	//Draw background
-	SDL_Rect srcRect = { 0, 0, 256, 256 };
-	SDL_Rect destRect;
+	////Draw background
+	//SDL_Rect srcRect = { 0, 0, 256, 256 };
+	//SDL_Rect destRect;
 
-	//Drawing background by looping it | If .png is too small compared to screen size
-	for (int x = 0; x < this->size_.x / 256; x++)
+	////Drawing background by looping it | If .png is too small compared to screen size
+	//for (int x = 0; x < this->size_.x / 256; x++)
+	//{
+	//	for (int y = 0; y < this->size_.y / 256; y++)
+	//	{
+	//		destRect.x = x * 256 * globals::SCALE_SPRITE;
+	//		destRect.y = y * 256 * globals::SCALE_SPRITE;
+	//		destRect.w = 256 * globals::SCALE_SPRITE;
+	//		destRect.h = 256 * globals::SCALE_SPRITE;
+
+	//		graphics.blitSurface(this->background_, &srcRect, &destRect);
+	//	}
+	//}
+
+	for (int i = 0; i < this->tileList_.size(); i++) 
 	{
-		for (int y = 0; y < this->size_.y / 256; y++)
-		{
-			destRect.x = x * 256 * globals::SCALE_SPRITE;
-			destRect.y = y * 256 * globals::SCALE_SPRITE;
-			destRect.w = 256 * globals::SCALE_SPRITE;
-			destRect.h = 256 * globals::SCALE_SPRITE;
-
-			graphics.blitSurface(this->background_, &srcRect, &destRect);
-		}
+		this->tileList_.at(i).draw(graphics);
 	}
 }
 
