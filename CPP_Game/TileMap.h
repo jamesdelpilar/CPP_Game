@@ -36,30 +36,27 @@ private:
 	Vector2 spawnPoint_;
 	Vector2 size_;
 	Vector2 tileSize_;
-	//std::vector<Tile> tileList_;
-	//std::vector<Tileset> tileSets_;
-
-	SDL_Texture *background_;
-
-	//Tileset Structure
-	/*struct Tileset
-	{
-		SDL_Texture* texture;
-		int firstGid;
-
-		Tileset()
-		{
-			texture = nullptr;
-			this->firstGid = -1;
-		}
-
-		Tileset(SDL_Texture* texture, int firstGid)
-		{
-			this->texture = texture;
-			this->firstGid = firstGid;
-		}
-	};*/
-
+	SDL_Texture* backgroundTex_;
+	std::vector<Tile> tileList_;
+	std::vector<Tileset> tilesets_;
 	
 };
 
+//Tileset Structure
+struct Tileset
+{
+	SDL_Texture* Texture;
+	int FirstGid;
+
+	Tileset()
+	{
+		//Texture = nullptr;
+		this->FirstGid = -1;
+	}
+
+	Tileset(SDL_Texture* texture, int firstGid)
+	{
+		this->Texture = texture;
+		this->FirstGid = firstGid;
+	}
+};

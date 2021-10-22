@@ -27,9 +27,9 @@ void Game::gameLoop()
 	SDL_Event event;
 
 	// Calling objects
-	this->mainPlayer = Player(graphics, 200, 200);
 	//this->enemy1 = Enemy(graphics, 300, 100);
-	this->Level1 = TileMap("Level 1", Vector2(0,0), graphics);
+	this->Level1 = TileMap("Map1", Vector2(50,50), graphics);
+	this->mainPlayer = Player(graphics, 0, 0);
 	
 	//FrameRate
 	int LAST_UPDATE_TIME = SDL_GetTicks();
@@ -155,13 +155,14 @@ void Game::draw(Graphics& graphics)
 }
 void Game::update(float elapsedTime)
 {
+
 	if (collider.AABB(mainPlayer.getPlayerHitBox(), SDL_Rect{ 0, 720, 1080, 10 }) == true) 
 	{
 		this->mainPlayer.wallColliding();
 		printf("Collision!\n");
 	}
 	this->mainPlayer.update(elapsedTime);
-	//this->enemy1.update(elapsedTime);
 	this->Level1.update(elapsedTime);
+	//this->enemy1.update(elapsedTime);
 	
 }
