@@ -18,6 +18,9 @@ SDL_Surface* Graphics::loadImage(const string& filePath)
 	{
 		this->spriteSheets_[filePath] = IMG_Load(filePath.c_str());
 	}
+	else {
+		printf("Couldn't load your image");
+	}
 	return this->spriteSheets_[filePath];
 }
 
