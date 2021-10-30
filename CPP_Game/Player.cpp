@@ -20,34 +20,49 @@ Player::~Player()
 	delete &facingPosition_;*/
 }
 
-Player::Player(Graphics& graphics, float x, float y) : SpriteAnimation(graphics, "Assets/Sprites/LinkSprite.png", 0, 0, 21, 27, x, y, 100)
+Player::Player(Graphics& graphics, float x, float y) : SpriteAnimation(graphics, "Assets/Sprites/PlayerMovement.png", 0, 0, 64, 64, x, y, 100)
 {
-	graphics.loadImage("Assets/Sprites/LinkSprite.png");
+	graphics.loadImage("Assets/Sprites/PlayerMovement.png");
 	this->setupAnimations();
 	//this->playAnimation("MoveBackward");
 }
 
 void Player::setupAnimations()
 {
-	this->addAnimation(1, 0,0, "IdleForward", 21, 26, Vector2(0, 0));
-	this->addAnimation(1, 0, 81, "IdleLeft", 21, 25, Vector2(0, 0));
-	this->addAnimation(1, 0, 54, "IdleRight", 20, 26, Vector2(0, 0));
-	this->addAnimation(1, 0, 0, "IdleBackward", 21, 27, Vector2(0, 0));
 
-	this->addAnimation(7, 0, 0, "MoveUp", 21, 26, Vector2(0, 0));
-	this->addAnimation(7, 0, 81, "MoveLeft", 21, 25, Vector2(0, 0));
-	this->addAnimation(7, 0, 54, "MoveRight", 21, 25, Vector2(0, 0));
-	this->addAnimation(7, 0, 27, "MoveDown", 21, 27, Vector2(0, 0));
+	this->addAnimation(1, 0,0, "IdleForward", 64, 64, Vector2(0, 0));
+	this->addAnimation(1, 0, 64, "IdleLeft", 64, 64, Vector2(0, 0));
+	this->addAnimation(1, 0, 128, "IdleRight", 64, 64, Vector2(0, 0));
+	this->addAnimation(1, 0, 192, "IdleBackward", 64, 64, Vector2(0, 0));
 
-	this->addAnimation(1, 0, 137, "AttackUp", 25, 35, Vector2(0, 0));
-	this->addAnimation(1, 0, 197, "AttackLeft", 35, 25, Vector2(0, 0));
-	this->addAnimation(1, 0, 173, "AttackRight", 35, 25, Vector2(0, 0));
-	this->addAnimation(1, 0, 222, "AttackDown", 25, 35, Vector2(0, 0));
+	this->addAnimation(4, 0, 0, "MoveUp", 64, 64, Vector2(0, 0));
+	this->addAnimation(4, 0, 64, "MoveLeft", 64, 64, Vector2(0, 0));
+	this->addAnimation(4, 0, 128, "MoveRight", 64, 64, Vector2(0, 0));
+	this->addAnimation(4, 0, 192, "MoveDown", 64, 64, Vector2(0, 0));
 
-	//this->addAnimation(3, 0, 137, "AttackUp", 40, 40, Vector2(0, 0));
-	//this->addAnimation(3, 0, 197, "AttackLeft", 40, 40, Vector2(0, 0));
-	//this->addAnimation(3, 0, 173, "AttackRight", 40, 40, Vector2(0, 0));
-	//this->addAnimation(3, 0, 222, "AttackDown", 40, 40, Vector2(0, 0));
+	this->addAnimation(4, 0, 305, "AttackUp", 64, 64, Vector2(0, 0));
+	this->addAnimation(4, 0, 369, "AttackLeft", 64, 64, Vector2(0, 0));
+	this->addAnimation(4, 0, 433, "AttackRight", 64, 64, Vector2(0, 0));
+	this->addAnimation(4, 0, 510, "AttackDown", 64, 64, Vector2(0, 0));
+
+
+
+
+	//this->addAnimation(1, 0,0, "IdleForward", 21, 26, Vector2(0, 0));
+	//this->addAnimation(1, 0, 81, "IdleLeft", 21, 25, Vector2(0, 0));
+	//this->addAnimation(1, 0, 54, "IdleRight", 20, 26, Vector2(0, 0));
+	//this->addAnimation(1, 0, 0, "IdleBackward", 21, 27, Vector2(0, 0));
+
+	//this->addAnimation(7, 0, 0, "MoveUp", 21, 26, Vector2(0, 0));
+	//this->addAnimation(7, 0, 81, "MoveLeft", 21, 25, Vector2(0, 0));
+	//this->addAnimation(7, 0, 54, "MoveRight", 21, 25, Vector2(0, 0));
+	//this->addAnimation(7, 0, 27, "MoveDown", 21, 27, Vector2(0, 0));
+
+	//this->addAnimation(1, 0, 137, "AttackUp", 25, 35, Vector2(0, 0));
+	//this->addAnimation(1, 0, 197, "AttackLeft", 35, 25, Vector2(0, 0));
+	//this->addAnimation(1, 0, 173, "AttackRight", 35, 25, Vector2(0, 0));
+	//this->addAnimation(1, 0, 222, "AttackDown", 25, 35, Vector2(0, 0));
+
 
 }
 
