@@ -29,10 +29,10 @@ Player::Player(Graphics& graphics, float x, float y) : SpriteAnimation(graphics,
 void Player::setupAnimations()
 {
 
-	this->addAnimation(1, 0,0, "IdleUp", 64, 64, Vector2(0, 0));
+	this->addAnimation(1, 0,0, "IdleForward", 64, 64, Vector2(0, 0));
 	this->addAnimation(1, 0, 64, "IdleLeft", 64, 64, Vector2(0, 0));
 	this->addAnimation(1, 0, 128, "IdleRight", 64, 64, Vector2(0, 0));
-	this->addAnimation(1, 0, 192, "IdleDown", 64, 64, Vector2(0, 0));
+	this->addAnimation(1, 0, 192, "IdleBackward", 64, 64, Vector2(0, 0));
 
 	this->addAnimation(4, 0, 0, "MoveUp", 64, 64, Vector2(0, 0));
 	this->addAnimation(4, 0, 64, "MoveLeft", 64, 64, Vector2(0, 0));

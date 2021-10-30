@@ -66,7 +66,7 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
 		{
 			this->mainPlayer.moveLeft();
-			std::cout << "MoveLeft" << std::endl;
+			std::cout << "MOVE LEFT" << std::endl;
 		}
 
 		else if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
@@ -111,22 +111,22 @@ void Game::gameLoop()
 			this->mainPlayer.stopMoving(this->mainPlayer.getDir());
 			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::UP)
 			{
-				std::cout << "AttackUp" << std::endl;
+				std::cout << "ATTACK UP" << std::endl;
 				this->mainPlayer.attackUp();
 			}
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::DOWN)
 			{
-				std::cout << "AttackDown" << std::endl;
+				std::cout << "ATTACK DOWN" << std::endl;
 				this->mainPlayer.attackDown();
 			}
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::LEFT)
 			{
-				std::cout << "AttackLeft" << std::endl;
+				std::cout << "ATTACK LEFT" << std::endl;
 				this->mainPlayer.attackLeft();
 			}
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::RIGHT)
 			{
-				std::cout << "AttackRight" << std::endl;
+				std::cout << "ATTACK RIGHT" << std::endl;
 				this->mainPlayer.attackRight();
 			}
 		}
