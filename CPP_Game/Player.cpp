@@ -7,6 +7,7 @@ namespace PLAYER_CONSTS
 
 Player::Player()
 {
+	health = Health::Health(); ////////////////////////
 	facingPosition_ = Direction::DOWN;
 	changeInXPos = 0;
 	changeInYPos = 0;

@@ -52,6 +52,7 @@ private:
 	float changeInXPos, changeInYPos;
 	SDL_Rect playerHitBox;/////////////////////
 	Direction facingPosition_;
+	Health health; ////////////////
 
 };
 #endif
