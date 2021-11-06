@@ -58,37 +58,38 @@ void Game::gameLoop()
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true &&
-			mainPlayer.getChangeInYPos() == 0.0f &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			mainPlayer.getChangeInYPos() == 0.0f 
+			 /*&&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)*/))
 		{
 			this->mainPlayer.moveLeft();
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
-			mainPlayer.getChangeInYPos() == 0.0f &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
+			mainPlayer.getChangeInYPos() == 0.0f/*&&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)*/))
 		{
 			this->mainPlayer.moveRight();
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true &&
-			mainPlayer.getChangeInXPos() == 0.0f &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false) &&
+			mainPlayer.getChangeInXPos() == 0.0f/*&&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false)*/))
 		{
 			this->mainPlayer.moveDown();
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true &&
-			mainPlayer.getChangeInXPos() == 0.0f &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)))
+			mainPlayer.getChangeInXPos() == 0.0f/*&&
+			 (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)*/))
 		{
 			this->mainPlayer.moveUp();
 		}
