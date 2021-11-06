@@ -11,7 +11,7 @@ Player::Player()
 	facingPosition_ = Direction::DOWN;
 	changeInXPos = 0;
 	changeInYPos = 0;
-	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 10, 10};////////////////////////
+	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 64, 64};////////////////////////
 }
 
 Player::~Player()
@@ -125,8 +125,12 @@ void Player::stopMoving(Direction facingPosition)
 
 // temp solution for wall collisions
 void Player::wallColliding() {
-	this->setChangeInXPos(this->getChangeInXPos() * -5.0);
-	this->setChangeInYPos(this->getChangeInYPos() * -5.0);
+	if (facingPosition_ == Direction::UP || facingPosition_ == Direction::DOWN) {
+		this->setChangeInYPos(this->getChangeInYPos() * -1.0);
+	}
+	else if (facingPosition_ == Direction::RIGHT || facingPosition_ == Direction::LEFT) {
+		this->setChangeInXPos(this->getChangeInXPos() * -1.0);
+	}
 }
 
 void Player::update(float elapsedTime)
