@@ -51,10 +51,13 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="BaseEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,14 +98,20 @@
     <ClInclude Include="Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
+    <ClInclude Include="BaseEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SkeletonEnemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="maps\Map1.tmx" />
+    <None Include="Levels\Level1.tmx">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

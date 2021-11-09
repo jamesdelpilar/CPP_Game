@@ -1,41 +1,31 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#pragma once
 
 #include "Globals.h"
-#include "Graphics.h"
 #include "SpriteAnimation.h"
-#include "Collision.h"////////////////////////
-
+#include "Collision.h"
+#include <string>
+#include "Player.h"
 
 class Graphics;
 using namespace globals;
 
-class Player : public SpriteAnimation
+class BaseEnemy : public SpriteAnimation
 {
 public:
-	Player();
-	~Player();
-	Player(Graphics& graphics, float x, float y);
-	void draw(Graphics& graphics);
-	void update(float elapsedTime);
+	BaseEnemy();
+	BaseEnemy(Graphics& graphics, std::string filePath, int srcX, int srcY, int width, int height,
+		Vector2 spawnPoint, int timeToUpdate);
+	~BaseEnemy();
+
+
+	virtual void update(int elapsedTime, Player &player);
+	virtual void draw(Graphics& graphics);
 
 	virtual void animationComplete(string currentAnimation);
 	virtual void setupAnimations();
 
-	//Moves player by change in x and y Position
-	void moveUp();
-	void moveDown();
-	void moveRight();
-	void moveLeft();
-
-	//Allows player to switch from moving animations to attacking animations
-	void attackUp();
-	void attackDown();
-	void attackRight();
-	void attackLeft();
-
 	// Stops animation and plays idle animation
-	void stopMoving(Direction facingPosition);
+	void stopMoving();
 	void wallColliding();
 	// getters & setters
 	SDL_Rect getPlayerHitBox() { return playerHitBox; }
@@ -45,12 +35,10 @@ public:
 	void setChangeInXPos(float changeInXPos_) { changeInXPos = changeInXPos_; }
 	void setChangeInYPos(float changeInYPos_) { changeInYPos = changeInYPos_; }
 
-	Direction getDir() { return facingPosition_; }
-
 private:
 	float changeInXPos, changeInYPos;
 	SDL_Rect playerHitBox;/////////////////////
 	Direction facingPosition_;
 
 };
-#endif
+

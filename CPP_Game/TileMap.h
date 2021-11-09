@@ -7,14 +7,19 @@
 #include <sstream>
 #include <vector>
 #include <SDL.h>
+
+#include "BaseEnemy.h"
 #include "Globals.h"
 #include "Graphics.h"
+#include "Player.h"
 #include "Tile.h"
 #include "tinyxml2.h"
 
 using namespace tinyxml2;
 
+class BaseEnemy;
 class Graphics;
+class Player;
 struct SDL_Texture;
 struct SDL_Rect;
 struct Tileset;
@@ -27,7 +32,7 @@ public:
 	TileMap();
 	~TileMap();
 	TileMap(string mapName, Vector2 spawnPoint, Graphics& graphics);
-	void update(int elapsedTime);
+	void update(int elapsedTime, Player &player);
 	void draw(Graphics& graphics);
 
 private:
@@ -36,9 +41,12 @@ private:
 	Vector2 spawnPoint_;
 	Vector2 size_;
 	Vector2 tileSize_;
+
 	SDL_Texture* backgroundTex_;
+
 	std::vector<Tile> tileList_;
 	std::vector<Tileset> tilesets_;
+	std::vector<BaseEnemy*> enemies;
 	
 };
 
