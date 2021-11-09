@@ -1,5 +1,7 @@
 #include "TileMap.h"
 
+#include "SkeletonEnemy.h"
+
 TileMap::TileMap()
 {
 	backgroundTex_ = nullptr;
@@ -155,35 +157,68 @@ void TileMap::loadTileMap(string mapName, Graphics& graphics)
 			pLayer = pLayer->NextSiblingElement("layer");
 		}
 	}
+
+	// Read Enemies in .tmx file
+	XMLElement* pObjectGroup = mapNode->FirstChildElement("objectgroup");
+	if (pObjectGroup != NULL) 
+	{
+		while (pObjectGroup) 
+		{
+			const char* name = pObjectGroup->Attribute("name");
+			std::stringstream ss;
+			ss << name;
+
+			if (ss.str() == "Enemies") 
+			{
+				float x, y;
+				XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+				if (pObject != NULL) 
+				{
+					while (pObject) 
+					{
+						x = pObject->FloatAttribute("x");
+						y = pObject->FloatAttribute("y");
+						const char* name = pObject->Attribute("name");
+						std::stringstream ss;
+						ss << name;
+
+						if (ss.str() == "Skeleton") 
+						{
+							this->enemies.push_back(new SkeletonEnemy(graphics, Vector2(std::floor(x) * globals::SCALE_SPRITE,
+								std::floor(y) * globals::SCALE_SPRITE)));
+						}
+
+						pObject = pObject->NextSiblingElement("object");
+					}
+				}
+			}
+
+			pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
+		}
+	}
 }
 
-void TileMap::update(int elapsedTime)
+
+
+void TileMap::update(int elapsedTime, Player &player)
 {
+	for (int i = 0; i < this->enemies.size(); i++) 
+	{
+		this->enemies.at(i)->update(elapsedTime, player);
+	}
 };
 
 void TileMap::draw(Graphics& graphics)
 {
-	////Draw background
-	//SDL_Rect srcRect = { 0, 0, 256, 256 };
-	//SDL_Rect destRect;
-
-	////Drawing background by looping it | If .png is too small compared to screen size
-	//for (int x = 0; x < this->size_.x / 256; x++)
-	//{
-	//	for (int y = 0; y < this->size_.y / 256; y++)
-	//	{
-	//		destRect.x = x * 256 * globals::SCALE_SPRITE;
-	//		destRect.y = y * 256 * globals::SCALE_SPRITE;
-	//		destRect.w = 256 * globals::SCALE_SPRITE;
-	//		destRect.h = 256 * globals::SCALE_SPRITE;
-
-	//		graphics.blitSurface(this->background_, &srcRect, &destRect);
-	//	}
-	//}
 
 	for (int i = 0; i < this->tileList_.size(); i++) 
 	{
 		this->tileList_.at(i).draw(graphics);
+	}
+
+	for (int i = 0; i < this->enemies.size(); i++) 
+	{
+		this->enemies.at(i)->draw(graphics);
 	}
 }
 

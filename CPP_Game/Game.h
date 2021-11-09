@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Collision.h"
-#include "Enemy.h"
+#include "BaseEnemy.h"
 #include "Graphics.h"
 #include "KeyboardInput.h"
 #include "Player.h"

@@ -21,6 +21,8 @@ protected:
 	Vector2 size_;
 	Vector2 tilesetPosition_;
 	Vector2 position_;
+
+
 	
 };
 

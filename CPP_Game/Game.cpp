@@ -28,7 +28,7 @@ void Game::gameLoop()
 
 	// Calling objects
 	//this->enemy1 = Enemy(graphics, 300, 100);
-	this->Level1 = TileMap("Map1", Vector2(50,50), graphics);
+	this->Level1 = TileMap("Level1", Vector2(50,50), graphics);
 	this->mainPlayer = Player(graphics, 0, 0);
 	
 	//FrameRate
@@ -162,7 +162,7 @@ void Game::update(float elapsedTime)
 		printf("Collision!\n");
 	}
 	this->mainPlayer.update(elapsedTime);
-	this->Level1.update(elapsedTime);
+	this->Level1.update(elapsedTime, this->mainPlayer);
 	//this->enemy1.update(elapsedTime);
 	
 }
