@@ -7,7 +7,7 @@ SkeletonEnemy::SkeletonEnemy()
 
 SkeletonEnemy::SkeletonEnemy(Graphics& graphics, Vector2 spawnPoint) :
 	BaseEnemy(graphics, "Assets/Sprites/PlayerMovement.png", 64, 64, 64, 64, 
-		spawnPoint, 100 ), startingXPos(spawnPoint.x), startingYPos(spawnPoint.y), enemyMovementLeft(false)
+		spawnPoint, 100 )
 {
 	this->setupAnimations();
 	this->playAnimation("MoveLeft");
@@ -16,30 +16,6 @@ SkeletonEnemy::SkeletonEnemy(Graphics& graphics, Vector2 spawnPoint) :
 void SkeletonEnemy::update(int elapsedTime, Player& player)
 {
 	// Movement
-	//this->x_ += this->enemyMovementLeft ? -0.2 : 0.2;
-	/*if (this->x_ > (this->startingXPos + 20) || this->x_ < this->startingXPos - 20)
-	{
-		this->enemyMovementLeft = !this->enemyMovementLeft;
-	}*/
-	/*if (player.getChangeInXPos() > this->x_)
-	{
-		this->x_ += 1;
-	}
-
-	if (player.getChangeInYPos() > this->y_)
-	{
-		this->y_ += 1;
-	}
-
-	if (player.getChangeInXPos() < this->x_)
-	{
-		this->x_ -= 1;
-	}
-
-	if (player.getChangeInYPos() < this->y_)
-	{
-		this->y_ -= 1;
-	}*/
 
 	if (player.getChangeInXPos() > this->x_)
 	{

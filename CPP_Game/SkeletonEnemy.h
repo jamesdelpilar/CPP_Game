@@ -19,10 +19,6 @@ public:
 	virtual void setupAnimations();
 
 private:
-	float startingXPos, startingYPos;
-	bool enemyMovementLeft;
-
-
 
 };
 
