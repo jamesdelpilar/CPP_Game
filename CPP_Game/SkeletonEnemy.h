@@ -6,6 +6,11 @@
 #include "Player.h"
 #include "Vec2.h"
 
+class Game;
+class Player;
+
+using namespace globals;
+
 class SkeletonEnemy : public BaseEnemy
 {
 public:

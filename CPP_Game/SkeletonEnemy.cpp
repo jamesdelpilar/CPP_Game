@@ -17,26 +17,27 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 {
 	// Movement
 
-	if (player.getChangeInXPos() > this->x_)
+	if (player.getPlayerXPos() > this->x_)
 	{
 		this->x_ += 0.2f;
 	}
 
-	if (player.getChangeInXPos() < this->x_)
+	if (player.getPlayerXPos() < this->x_)
 	{
 		this->x_ -= 0.2f;
 	}
 
-	if (player.getChangeInYPos() > this->y_)
+	if (player.getPlayerYPos() > this->y_)
 	{
 		this->y_ += 0.2f;
 	}
 
 
-	if (player.getChangeInYPos() < this->y_)
+	if (player.getPlayerYPos() < this->y_)
 	{
 		this->y_ -= 0.2f;
 	}
+
 	BaseEnemy::update(elapsedTime, player);
 }
 

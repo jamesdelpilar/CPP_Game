@@ -42,6 +42,9 @@ public:
 	float getChangeInXPos() { return changeInXPos; }
 	float getChangeInYPos() { return changeInYPos; }
 
+	float getPlayerXPos() { return x_; }
+	float getPlayerYPos() { return y_; }
+
 	void setChangeInXPos(float changeInXPos_) { changeInXPos = changeInXPos_; }
 	void setChangeInYPos(float changeInYPos_) { changeInYPos = changeInYPos_; }
 
@@ -49,6 +52,7 @@ public:
 
 private:
 	float changeInXPos, changeInYPos;
+	float x; float y;
 	SDL_Rect playerHitBox;/////////////////////
 	Direction facingPosition_;
 

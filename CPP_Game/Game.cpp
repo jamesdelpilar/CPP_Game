@@ -28,8 +28,8 @@ void Game::gameLoop()
 
 	// Calling objects
 	//this->enemy1 = Enemy(graphics, 300, 100);
-	this->Level1 = TileMap("Level1", Vector2(50,50), graphics);
-	this->mainPlayer = Player(graphics, 0, 0);
+	this->Level1 = TileMap("Level1", Vector2(0,0), graphics);
+	this->mainPlayer = Player(graphics, 500, 500);
 	
 	//FrameRate
 	int LAST_UPDATE_TIME = SDL_GetTicks();

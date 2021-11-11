@@ -134,6 +134,10 @@ void Player::update(float elapsedTime)
 	this->y_ += this->changeInYPos * elapsedTime;
 	this->playerHitBox = { static_cast<int>(this->x_), static_cast<int>(this->y_), 32, 32 }; //////////
 	SpriteAnimation::update(elapsedTime);
+
+	std::cout << this->x_ << std::endl;
+	std::cout << this->y_ << std::endl;
+
 }
 
 void Player::draw(Graphics& graphics)

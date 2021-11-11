@@ -6,7 +6,10 @@
 #include <string>
 #include "Player.h"
 
+class Game;
 class Graphics;
+class Player;
+
 using namespace globals;
 
 class BaseEnemy : public SpriteAnimation
