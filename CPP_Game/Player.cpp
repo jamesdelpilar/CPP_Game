@@ -7,11 +7,10 @@ namespace PLAYER_CONSTS
 
 Player::Player()
 {
-	health = Health::Health(); ////////////////////////
 	facingPosition_ = Direction::DOWN;
 	changeInXPos = 0;
 	changeInYPos = 0;
-	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 64, 64};////////////////////////
+	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 10, 10};////////////////////////
 }
 
 Player::~Player()
@@ -125,18 +124,8 @@ void Player::stopMoving(Direction facingPosition)
 
 // temp solution for wall collisions
 void Player::wallColliding() {
-	if (facingPosition_ == Direction::UP) {
-		this->changeInYPos = PLAYER_CONSTS::WALK_SPEED;
-	}
-	else if (facingPosition_ == Direction::DOWN) {
-		this->changeInYPos = -PLAYER_CONSTS::WALK_SPEED;
-	}
-	else if (facingPosition_ == Direction::RIGHT) {
-		this->changeInXPos = -PLAYER_CONSTS::WALK_SPEED;
-	}
-	else if (facingPosition_ == Direction::LEFT) {
-		this->changeInXPos = PLAYER_CONSTS::WALK_SPEED;
-	}
+	this->setChangeInXPos(this->getChangeInXPos() * -5.0);
+	this->setChangeInYPos(this->getChangeInYPos() * -5.0);
 }
 
 void Player::update(float elapsedTime)
@@ -145,6 +134,10 @@ void Player::update(float elapsedTime)
 	this->y_ += this->changeInYPos * elapsedTime;
 	this->playerHitBox = { static_cast<int>(this->x_), static_cast<int>(this->y_), 32, 32 }; //////////
 	SpriteAnimation::update(elapsedTime);
+
+	std::cout << this->x_ << std::endl;
+	std::cout << this->y_ << std::endl;
+
 }
 
 void Player::draw(Graphics& graphics)

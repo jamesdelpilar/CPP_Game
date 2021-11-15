@@ -2,7 +2,6 @@
 #include <iostream>
 #include "globals.h"
 #include "Graphics.h"
-#include "Health.h"
 class Graphics;
 
 class Sprite
