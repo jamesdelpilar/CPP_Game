@@ -30,7 +30,7 @@ void Game::gameLoop()
 	//this->enemy1 = Enemy(graphics, 300, 100);
 	this->Level1 = TileMap("Level1", Vector2(0,0), graphics);
 	this->mainPlayer = Player(graphics, 500, 500);
-	
+
 	//FrameRate
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 
@@ -39,6 +39,7 @@ void Game::gameLoop()
 	{
 		keyboardInput.beginNewFrame();
 
+		// Player Inputs
 		if (SDL_PollEvent(&event)) {
 			if (event.type == SDL_KEYDOWN) {
 				if (event.key.repeat == 0) {
@@ -164,5 +165,4 @@ void Game::update(float elapsedTime)
 	this->mainPlayer.update(elapsedTime);
 	this->Level1.update(elapsedTime, this->mainPlayer);
 	//this->enemy1.update(elapsedTime);
-	
 }
