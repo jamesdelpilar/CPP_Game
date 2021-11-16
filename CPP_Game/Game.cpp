@@ -57,52 +57,41 @@ void Game::gameLoop()
 			return;
 		}
 
-		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true   && 
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_D) == false) && 
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_S) == false) && 
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_W) == false) &&
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			mainPlayer.getChangeInYPos() == 0.0f 
+			 /*&&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)*/))
 		{
 			this->mainPlayer.moveLeft();
-			std::cout << "MOVE LEFT" << std::endl;
 		}
 
-		else if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_A) == false) &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_W) == false) &&
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
+			mainPlayer.getChangeInYPos() == 0.0f/*&&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)*/))
 		{
 			this->mainPlayer.moveRight();
-			
 		}
 
-		else if ((keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_D) == false) &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_A) == false) &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_W) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false) &&
+			mainPlayer.getChangeInXPos() == 0.0f/*&&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)))
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false)*/))
 		{
 			this->mainPlayer.moveDown();
-			
 		}
 
-		else if ((keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_D) == false) &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.wasKeyPressed(SDL_SCANCODE_A) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)))
+			mainPlayer.getChangeInXPos() == 0.0f/*&&
+			 (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
+			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)*/))
 		{
 			this->mainPlayer.moveUp();
-			
 		}
 
 		else if (!keyboardInput.isKeyHeld(SDL_SCANCODE_A) && !keyboardInput.isKeyHeld(SDL_SCANCODE_D) && !keyboardInput.isKeyHeld(SDL_SCANCODE_S)
@@ -156,7 +145,7 @@ void Game::draw(Graphics& graphics)
 void Game::update(float elapsedTime)
 {
 
-	if (collider.AABB(mainPlayer.getPlayerHitBox(), SDL_Rect{ 0, 720, 1080, 10 }) == true) 
+	if (collider.AABB(mainPlayer.getPlayerHitBox(), SDL_Rect{ 0, 660, 1480, 10 }) == true) 
 	{
 		this->mainPlayer.wallColliding();
 		printf("Collision!\n");
