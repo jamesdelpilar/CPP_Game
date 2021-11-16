@@ -27,7 +27,6 @@ SDL_Surface* Graphics::loadImage(const string& filePath)
 void Graphics::blitSurface(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
 {
 	SDL_RenderCopy(this->renderer_, texture, srcRect, destRect);
-
 }
 
 void Graphics::flip()
