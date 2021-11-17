@@ -24,6 +24,8 @@ public:
 	virtual void setupAnimations();
 
 private:
+	bool chaseState;
+	bool isAttacking;
 
 };
 

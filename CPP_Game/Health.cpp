@@ -15,6 +15,9 @@ void Health::Deduct(int damagePoints) {
 	if (HP > 0) {
 		HP -= damagePoints;
 	}
+	if (HP == 0) {
+		isDead = true;
+	}
 }
 
 void Health::Replanish(int damagePoints) {

@@ -5,6 +5,7 @@
 #include "Graphics.h"
 #include "SpriteAnimation.h"
 #include "Collision.h"////////////////////////
+#include "Health.h"
 
 
 class Graphics;
@@ -49,6 +50,8 @@ public:
 	void setChangeInYPos(float changeInYPos_) { changeInYPos = changeInYPos_; }
 
 	Direction getDir() { return facingPosition_; }
+
+	Health hp;
 
 private:
 	float changeInXPos, changeInYPos;
