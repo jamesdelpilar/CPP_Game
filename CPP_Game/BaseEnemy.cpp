@@ -2,14 +2,33 @@
 
 BaseEnemy::BaseEnemy()
 {
-	
+	changeInXPos = 0.0f;
+	changeInYPos = 0.0f;
+
+	fieldOfView.h = {0};
+	fieldOfView.w = {0};
+	fieldOfView.x = {0};
+	fieldOfView.y = {0};
+
+	enemyHitBox.h = {0};
+	enemyHitBox.w = {0};
+	enemyHitBox.x = {0};
+	enemyHitBox.y = {0};
+
+	facingPosition_ = Direction::LEFT;
+				
 }
 
 BaseEnemy::BaseEnemy(Graphics& graphics, std::string filePath, int srcX, int srcY, int width, int height,
 	Vector2 spawnPoint, int timeToUpdate) :
 		SpriteAnimation(graphics, filePath, srcX, srcY, width, height, 
-			spawnPoint.x, spawnPoint.y, timeToUpdate),
-					facingPosition_(Direction::LEFT)
+		spawnPoint.x, spawnPoint.y, timeToUpdate),
+		facingPosition_(Direction::LEFT),
+		changeInYPos(0.0f),
+		changeInXPos(0.0f),
+		fieldOfView{0,0,0,0},
+		enemyHitBox{0,0,0,0}
+				
 {
 }
 

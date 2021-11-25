@@ -27,5 +27,8 @@ private:
 	bool chaseState;
 	bool isAttacking;
 
+	float startingPosX, startingPosY;
+	bool isMoving;
+
 };
 

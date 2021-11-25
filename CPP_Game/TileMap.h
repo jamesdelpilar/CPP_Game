@@ -58,7 +58,6 @@ struct Tileset
 
 	Tileset()
 	{
-		//Texture = nullptr;
 		this->FirstGid = -1;
 	}
 

@@ -2,7 +2,7 @@
 
 Tile::Tile()
 {
-	//tileset_ = nullptr;
+	tileset_ = nullptr;
 }
 
 Tile::Tile(SDL_Texture* tileset, Vector2 size, Vector2 tilesetPosition, Vector2 position) :
