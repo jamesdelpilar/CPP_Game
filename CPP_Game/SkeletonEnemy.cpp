@@ -31,18 +31,11 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 {
 	// Movement
 
-	// Patrolling
-	this->y_ += this->isMoving ? -0.1 : 0.1;
-
-	if (this->y_ > (this->startingPosY + 100) || this->y_ < this->startingPosY - 100)
-	{
-		isMoving = !isMoving;
-	}
-
 	// Enemy Field of View
 
 	if (Collision::AABB(this->getFieldOfView(), player.getPlayerHitBox()) == true) {
 		chaseState = true;
+		isMoving = false;
 	}
 
 	// Chasing Player
@@ -50,6 +43,7 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 		if (player.getPlayerXPos() > this->x_)
 		{
 			this->setChangeInXPos(ENEMY_CONSTS::WALK_SPEED);
+
 			//this->playAnimation("MoveRight");
 			std::cout << "Greater than x" << std::endl;
 		}
@@ -57,6 +51,7 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 		else if (player.getPlayerXPos() < this->x_)
 		{
 			this->setChangeInXPos(-ENEMY_CONSTS::WALK_SPEED);
+
 			//this->playAnimation("MoveLeft");
 			std::cout << "Less than x" << std::endl;
 		}
@@ -64,6 +59,7 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 		else if (player.getPlayerYPos() > this->y_)
 		{
 			this->setChangeInYPos(ENEMY_CONSTS::WALK_SPEED);
+
 			this->playAnimation("MoveDown");
 			std::cout << "Greater than y" << std::endl;
 		}
@@ -71,6 +67,7 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 		else if (player.getPlayerYPos() < this->y_)
 		{
 			this->setChangeInYPos(-ENEMY_CONSTS::WALK_SPEED);
+
 			this->playAnimation("MoveUp");
 			std::cout << "Less than y" << std::endl;
 
