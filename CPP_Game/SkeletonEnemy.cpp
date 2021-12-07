@@ -9,11 +9,19 @@ SkeletonEnemy::SkeletonEnemy()
 {
 	chaseState = false;
 	isAttacking = false;
+	isMoving = false;
+	startingPosY = 0.0f;
+	startingPosX = 0.0f;
 }
 
 SkeletonEnemy::SkeletonEnemy(Graphics& graphics, Vector2 spawnPoint) :
 	BaseEnemy(graphics, "Assets/Sprites/Skeleton_RedEye.png", 24, 32, 24, 32, 
-		spawnPoint, 200 )
+		spawnPoint, 200),
+		startingPosX(spawnPoint.x),
+		startingPosY(spawnPoint.y),
+		isMoving(true),
+		chaseState(false),
+		isAttacking(false)
 {
 	this->setupAnimations();
 	this->playAnimation("MoveLeft");
@@ -22,35 +30,51 @@ SkeletonEnemy::SkeletonEnemy(Graphics& graphics, Vector2 spawnPoint) :
 void SkeletonEnemy::update(int elapsedTime, Player& player)
 {
 	// Movement
+
+	// Enemy Field of View
+
 	if (Collision::AABB(this->getFieldOfView(), player.getPlayerHitBox()) == true) {
 		chaseState = true;
+		isMoving = false;
 	}
+
+	// Chasing Player
 	if (chaseState) {
 		
 		if (player.getPlayerXPos() > this->x_)
 		{
 			this->setChangeInXPos(ENEMY_CONSTS::WALK_SPEED);
+
+			//this->playAnimation("MoveRight");
 			std::cout << "Greater than x" << std::endl;
 		}
-		if (player.getPlayerXPos() < this->x_)
+
+		else if (player.getPlayerXPos() < this->x_)
 		{
 			this->setChangeInXPos(-ENEMY_CONSTS::WALK_SPEED);
+
+			//this->playAnimation("MoveLeft");
 			std::cout << "Less than x" << std::endl;
 		}
 
-		if (player.getPlayerYPos() > this->y_)
+		else if (player.getPlayerYPos() > this->y_)
 		{
 			this->setChangeInYPos(ENEMY_CONSTS::WALK_SPEED);
-			//this->playAnimation("MoveDown");
+
+			this->playAnimation("MoveDown");
 			std::cout << "Greater than y" << std::endl;
 		}
-		if (player.getPlayerYPos() < this->y_)
+
+		else if (player.getPlayerYPos() < this->y_)
 		{
 			this->setChangeInYPos(-ENEMY_CONSTS::WALK_SPEED);
-			//this->playAnimation("MoveUp");
+
+			this->playAnimation("MoveUp");
 			std::cout << "Less than y" << std::endl;
 
 		}
+
+		
 	}
 	BaseEnemy::update(elapsedTime, player);
 	if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == true && isAttacking == false) {

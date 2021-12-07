@@ -30,6 +30,9 @@ void Game::gameLoop()
 	//this->enemy1 = Enemy(graphics, 300, 100);
 	this->Level1 = TileMap("Level1", Vector2(0,0), graphics);
 	this->mainPlayer = Player(graphics, 500, 500);
+	this->testEnemy = TestEnemy(graphics, 100, 100);
+	//this->enemy_ = SkeletonEnemy(graphics, Vector2(10,10));
+
 
 	//FrameRate
 	int LAST_UPDATE_TIME = SDL_GetTicks();
@@ -138,7 +141,9 @@ void Game::draw(Graphics& graphics)
 	graphics.clear();
 
 	this->Level1.draw(graphics);
+	this->testEnemy.draw(graphics);
 	this->mainPlayer.draw(graphics);
+	//this->enemy_.draw(graphics);
 	//this->enemy1.draw(graphics);
 	
 	graphics.flip();
@@ -152,6 +157,9 @@ void Game::update(float elapsedTime)
 		printf("Collision!\n");
 	}
 	this->mainPlayer.update(elapsedTime);
-	this->Level1.update(elapsedTime, this->mainPlayer);
+	this->testEnemy.update(elapsedTime, this->mainPlayer);
+
+	//this->enemy_.update(elapsedTime, mainPlayer);
 	//this->enemy1.update(elapsedTime);
+	this->Level1.update(elapsedTime, this->mainPlayer);
 }

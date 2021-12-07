@@ -15,6 +15,7 @@
 #include "Tile.h"
 #include "tinyxml2.h"
 
+
 using namespace tinyxml2;
 
 class BaseEnemy;
@@ -58,7 +59,6 @@ struct Tileset
 
 	Tileset()
 	{
-		//Texture = nullptr;
 		this->FirstGid = -1;
 	}
 

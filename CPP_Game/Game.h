@@ -8,10 +8,15 @@
 #include "SpriteAnimation.h"
 #include "TileMap.h"
 #include "Collision.h"
+#include "Enemy.h"
+#include "BaseEnemy.h"
+#include "SkeletonEnemy.h"
+#include "TestEnemy.h"
 
 //Forward Declaration
 class Graphics;
 class Collision;
+class Player;
 
 // Info for when the GAME runs
 class Game
@@ -26,9 +31,12 @@ private:
 	void draw(Graphics& graphics);
 	void update(float elapsedTime);
 
+	//SkeletonEnemy enemy_;
+	//Enemy enemy1;
+	TestEnemy testEnemy;
 	Player mainPlayer;
 	TileMap Level1;
-	//Enemy enemy1;
+	
 	Collision collider;
 
 };
