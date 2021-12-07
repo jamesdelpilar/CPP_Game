@@ -153,7 +153,7 @@ void Game::update(float elapsedTime)
 
 	if (collider.AABB(mainPlayer.getPlayerHitBox(), SDL_Rect{ 0, 660, 1480, 10 }) == true) 
 	{
-		this->mainPlayer.wallColliding(this->mainPlayer.getDir());
+		this->mainPlayer.wallColliding();
 		printf("Collision!\n");
 	}
 	this->mainPlayer.update(elapsedTime);
