@@ -39,5 +39,9 @@ private:
 	
 	Collision collider;
 
+	SDL_Rect bottomWall;
+	SDL_Rect topWall;
+	SDL_Rect leftWall;
+	SDL_Rect rightWall;
 };
 
