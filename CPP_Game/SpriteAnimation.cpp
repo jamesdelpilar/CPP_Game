@@ -60,8 +60,8 @@ void SpriteAnimation::draw(Graphics& graphics, int x, int y)
 		destinationRectangle.w = this->srcRect.w * globals::SCALE_SPRITE;
 		destinationRectangle.h = this->srcRect.h * globals::SCALE_SPRITE;
 
-		SDL_Rect sourcRect = this->animations_[this->currentAnimation_][this->frameIndex_];
-		graphics.blitSurface(this->spriteSheet, &sourcRect, &destinationRectangle);
+		SDL_Rect sourceRect = this->animations_[this->currentAnimation_][this->frameIndex_];
+		graphics.blitSurface(this->spriteSheet, &sourceRect, &destinationRectangle);
 	}
 }
 
