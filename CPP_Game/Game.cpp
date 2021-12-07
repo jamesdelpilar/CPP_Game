@@ -40,7 +40,7 @@ void Game::gameLoop()
 	topWall = SDL_Rect{ -60, -60, 1480, 10 };
 	leftWall = SDL_Rect{ -60, -30, 10, 700 };
 	rightWall = SDL_Rect{ 1430, -30, 10, 700 };
-	//this->testEnemy = TestEnemy(graphics, 600, 600);
+	this->testEnemy = TestEnemy(graphics, Vector2(100, 100));
 	//this->enemy_ = SkeletonEnemy(graphics, Vector2(10,10));
 
 
@@ -151,7 +151,7 @@ void Game::draw(Graphics& graphics)
 	graphics.clear();
 
 	this->Level1.draw(graphics);
-	//this->testEnemy.draw(graphics);
+	this->testEnemy.draw(graphics);
 	this->mainPlayer.draw(graphics);
 	//this->enemy_.draw(graphics);
 	//this->enemy1.draw(graphics);
@@ -170,7 +170,7 @@ void Game::update(float elapsedTime)
 		printf("Collision!\n");
 	}
 	this->mainPlayer.update(elapsedTime);
-	//this->testEnemy.update(elapsedTime, this->mainPlayer);
+	this->testEnemy.update(elapsedTime, this->mainPlayer);
 
 	//this->enemy_.update(elapsedTime, mainPlayer);
 	//this->enemy1.update(elapsedTime);

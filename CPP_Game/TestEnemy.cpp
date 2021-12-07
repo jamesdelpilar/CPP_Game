@@ -7,13 +7,19 @@ namespace ENEMY_CONSTS
 
 TestEnemy::TestEnemy()
 {
-	facingPosition_ = Direction::DOWN;
+	chaseState = false;
+	isAttacking = false;
+	isMoving = false;
+	startingPosY = 0.0f;
+	startingPosX = 0.0f;
+
+	/*facingPosition_ = Direction::DOWN;
 	changeInXPos = 0;
 	changeInYPos = 0;
 
 	chaseState = false;
 	isAttacking = false;
-	isMoving = false;
+	isMoving = false;*/
 
 }
 
@@ -24,9 +30,15 @@ TestEnemy::~TestEnemy()
 	//delete &facingPosition_;
 }
 
-TestEnemy::TestEnemy(Graphics& graphics, float x, float y) : SpriteAnimation(graphics, "Assets/Sprites/Skeleton_RedEye.png", 24, 32, 24, 32, x, y, 100)
-{
-	facingPosition_ = Direction::DOWN;
+TestEnemy::TestEnemy(Graphics& graphics, Vector2 spawnPoint) :
+	BaseEnemy(graphics, "Assets/Sprites/Skeleton_RedEye.png", 24, 32, 24, 32, 
+		spawnPoint, 200),
+		startingPosX(spawnPoint.x),
+		startingPosY(spawnPoint.y),
+		isMoving(true),
+		chaseState(false),
+		isAttacking(false){
+	/*facingPosition_ = Direction::DOWN;*/
 	graphics.loadImage("Assets/Sprites/Skeleton_RedEye.png");
 	this->setupAnimations();
 	this->playAnimation("MoveLeft");
@@ -83,7 +95,7 @@ void TestEnemy::update(int elapsedTime, Player& player)
 			std::cout << "Less than x" << std::endl;
 		}
 
-		else if (player.getPlayerYPos() > this->y_)
+		if (player.getPlayerYPos() > this->y_)
 		{
 			this->setChangeInYPos(ENEMY_CONSTS::WALK_SPEED);
 
@@ -98,6 +110,14 @@ void TestEnemy::update(int elapsedTime, Player& player)
 			this->playAnimation("MoveUp");
 			std::cout << "0" << std::endl;
 
+		}
+		BaseEnemy::update(elapsedTime, player);
+		if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == true && isAttacking == false) {
+			isAttacking = true;
+			player.hp.Deduct(1);
+		}
+		if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == false) {
+			isAttacking = false;
 		}
 		SpriteAnimation::update(elapsedTime);
 
