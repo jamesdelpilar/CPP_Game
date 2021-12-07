@@ -25,6 +25,8 @@ TestEnemy::TestEnemy(Graphics& graphics, float x, float y) : SpriteAnimation(gra
 	facingPosition_ = Direction::DOWN;
 	graphics.loadImage("Assets/Sprites/Skeleton_RedEye.png");
 	this->setupAnimations();
+	//this->playAnimation("MoveDown");
+
 }
 
 void TestEnemy::setupAnimations()
@@ -187,6 +189,8 @@ void TestEnemy::update(float elapsedTime, Player& player)
 
 		}
 	}
+	SpriteAnimation::update(elapsedTime);
+
 }
 
 void TestEnemy::draw(Graphics& graphics)
