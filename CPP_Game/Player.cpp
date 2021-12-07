@@ -149,7 +149,6 @@ void Player::update(float elapsedTime)
 	this->y_ += this->changeInYPos * elapsedTime;
 	this->playerHitBox = { static_cast<int>(this->x_), static_cast<int>(this->y_), 32, 32 }; //////////
 	SpriteAnimation::update(elapsedTime);
-	printf("player HP = %d\n", hp.getHP());
 }
 
 void Player::draw(Graphics& graphics)

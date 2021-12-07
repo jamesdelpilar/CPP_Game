@@ -10,7 +10,6 @@ TestEnemy::TestEnemy()
 	facingPosition_ = Direction::DOWN;
 	changeInXPos = 0;
 	changeInYPos = 0;
-	playerHitBox = { static_cast<int>(x_), static_cast<int>(y_), 10, 10 };////////////////////////
 }
 
 TestEnemy::~TestEnemy()
@@ -25,7 +24,7 @@ TestEnemy::TestEnemy(Graphics& graphics, float x, float y) : SpriteAnimation(gra
 	facingPosition_ = Direction::DOWN;
 	graphics.loadImage("Assets/Sprites/Skeleton_RedEye.png");
 	this->setupAnimations();
-	//this->playAnimation("MoveDown");
+	this->playAnimation("MoveDown");
 
 }
 
@@ -143,7 +142,7 @@ void TestEnemy::update(float elapsedTime, Player& player)
 	//SpriteAnimation::update(elapsedTime);
 	//printf("player HP = %d\n", hp.getHP());
 
-	this->playAnimation("MoveDown");
+	
 
 	// Movement
 
@@ -189,7 +188,16 @@ void TestEnemy::update(float elapsedTime, Player& player)
 
 		}
 	}
-	SpriteAnimation::update(elapsedTime);
+	TestEnemy::update(elapsedTime, player);
+	if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == true && isAttacking == false) {
+		isAttacking = true;
+		player.hp.Deduct(1);
+		this->setChangeInXPos(-ENEMY_CONSTS::WALK_SPEED);
+		this->setChangeInYPos(-ENEMY_CONSTS::WALK_SPEED);
+	}
+	if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == false) {
+		isAttacking = false;
+	}
 
 }
 
