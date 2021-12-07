@@ -10,7 +10,6 @@ TestEnemy::TestEnemy()
 	facingPosition_ = Direction::DOWN;
 	changeInXPos = 0;
 	changeInYPos = 0;
-	playerHitBox = { static_cast<int>(x_), static_cast<int>(y_), 10, 10 };////////////////////////
 
 	chaseState = false;
 	isAttacking = false;

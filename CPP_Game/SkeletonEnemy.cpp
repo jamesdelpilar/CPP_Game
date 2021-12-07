@@ -79,8 +79,6 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 	if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == true && isAttacking == false) {
 		isAttacking = true;
 		player.hp.Deduct(1);
-		player.setChangeInXPos(player.getChangeInXPos() * -20.0f);
-		player.setChangeInYPos(player.getChangeInYPos() * -20.0f);
 	}
 	if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == false) {
 		isAttacking = false;

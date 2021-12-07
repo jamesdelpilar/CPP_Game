@@ -11,6 +11,11 @@ Game::Game()
 	// Initializes everything (SDL2, SDL Mixer, SDL TTF, SDL Image)
 	SDL_Init(SDL_INIT_EVERYTHING);
 	this->gameLoop();
+
+	bottomWall = SDL_Rect{ 0, 660, 1480, 10 };
+	topWall = SDL_Rect{ 0, 0, 1480, 10 };
+	SDL_Rect leftWall = SDL_Rect{ 0, 660, 1480, 10 };
+	SDL_Rect rightWall = SDL_Rect{ 0, 660, 1480, 10 };
 }
 
 Game::~Game()
@@ -30,6 +35,11 @@ void Game::gameLoop()
 	//this->enemy1 = Enemy(graphics, 300, 100);
 	this->Level1 = TileMap("Level1", Vector2(0,0), graphics);
 	this->mainPlayer = Player(graphics, 500, 500);
+
+	bottomWall = SDL_Rect{ -60, 660, 1480, 10 };
+	topWall = SDL_Rect{ -60, -60, 1480, 10 };
+	leftWall = SDL_Rect{ -60, -30, 10, 700 };
+	rightWall = SDL_Rect{ 1430, -30, 10, 700 };
 	//this->testEnemy = TestEnemy(graphics, 600, 600);
 	//this->enemy_ = SkeletonEnemy(graphics, Vector2(10,10));
 
@@ -151,9 +161,12 @@ void Game::draw(Graphics& graphics)
 void Game::update(float elapsedTime)
 {
 
-	if (collider.AABB(mainPlayer.getPlayerHitBox(), SDL_Rect{ 0, 660, 1480, 10 }) == true) 
+	if (collider.AABB(mainPlayer.getPlayerHitBox(), bottomWall) == true ||
+		collider.AABB(mainPlayer.getPlayerHitBox(), topWall) == true ||
+		collider.AABB(mainPlayer.getPlayerHitBox(), leftWall) == true ||
+		collider.AABB(mainPlayer.getPlayerHitBox(), rightWall) == true)
 	{
-		this->mainPlayer.wallColliding();
+		this->mainPlayer.wallColliding(this->mainPlayer.getDir());
 		printf("Collision!\n");
 	}
 	this->mainPlayer.update(elapsedTime);
