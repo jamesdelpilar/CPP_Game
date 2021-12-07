@@ -26,6 +26,7 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 		chaseState = true;
 	}
 	if (chaseState) {
+		
 		if (player.getPlayerXPos() > this->x_)
 		{
 			this->setChangeInXPos(ENEMY_CONSTS::WALK_SPEED);
@@ -55,8 +56,8 @@ void SkeletonEnemy::update(int elapsedTime, Player& player)
 	if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == true && isAttacking == false) {
 		isAttacking = true;
 		player.hp.Deduct(1);
-		player.setChangeInXPos(player.getChangeInXPos() * -20.0f);
-		player.setChangeInYPos(player.getChangeInYPos() * -20.0f);
+		this->setChangeInXPos(-ENEMY_CONSTS::WALK_SPEED);
+		this->setChangeInYPos(-ENEMY_CONSTS::WALK_SPEED);
 	}
 	if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == false) {
 		isAttacking = false;

@@ -123,9 +123,24 @@ void Player::stopMoving(Direction facingPosition)
 }
 
 // temp solution for wall collisions
-void Player::wallColliding() {
-	this->setChangeInXPos(this->getChangeInXPos() * -5.0);
-	this->setChangeInYPos(this->getChangeInYPos() * -5.0);
+void Player::wallColliding(Direction facingPosition) {
+	switch (facingPosition)
+	{
+	case Direction::LEFT:
+		this->changeInXPos = PLAYER_CONSTS::WALK_SPEED;
+		break;
+	case Direction::RIGHT:
+		this->changeInXPos = -PLAYER_CONSTS::WALK_SPEED;
+		break;
+	case Direction::UP:
+		this->changeInYPos = PLAYER_CONSTS::WALK_SPEED;
+		break;
+	case Direction::DOWN:
+		this->changeInYPos = -PLAYER_CONSTS::WALK_SPEED;
+		break;
+	default:
+		break;
+	}
 }
 
 void Player::update(float elapsedTime)

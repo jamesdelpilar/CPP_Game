@@ -37,7 +37,7 @@ public:
 
 	// Stops animation and plays idle animation
 	void stopMoving(Direction facingPosition);
-	void wallColliding();
+	void wallColliding(Direction facingPosition);
 	// getters & setters
 	SDL_Rect getPlayerHitBox() { return playerHitBox; }
 	float getChangeInXPos() { return changeInXPos; }
