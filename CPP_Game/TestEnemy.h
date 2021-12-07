@@ -19,7 +19,7 @@ public:
 	~TestEnemy();
 	TestEnemy(Graphics& graphics, float x, float y);
 	void draw(Graphics& graphics);
-	void update(float elapsedTime, Player& player);
+	void update(int elapsedTime, Player& player);
 
 	virtual void animationComplete(string currentAnimation);
 	virtual void setupAnimations();
