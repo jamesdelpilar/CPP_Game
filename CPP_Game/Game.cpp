@@ -11,11 +11,6 @@ Game::Game()
 	// Initializes everything (SDL2, SDL Mixer, SDL TTF, SDL Image)
 	SDL_Init(SDL_INIT_EVERYTHING);
 	this->gameLoop();
-
-	bottomWall = SDL_Rect{ 0, 660, 1480, 10 };
-	topWall = SDL_Rect{ 0, 0, 1480, 10 };
-	SDL_Rect leftWall = SDL_Rect{ 0, 660, 1480, 10 };
-	SDL_Rect rightWall = SDL_Rect{ 0, 660, 1480, 10 };
 }
 
 Game::~Game()

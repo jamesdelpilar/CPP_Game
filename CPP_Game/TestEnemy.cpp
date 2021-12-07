@@ -83,7 +83,7 @@ void TestEnemy::update(int elapsedTime, Player& player)
 		{
 			this->setChangeInXPos(ENEMY_CONSTS::WALK_SPEED);
 
-			this->playAnimation("MoveRight");
+			//this->playAnimation("MoveRight");
 			std::cout << "Greater than x" << std::endl;
 		}
 
@@ -91,7 +91,7 @@ void TestEnemy::update(int elapsedTime, Player& player)
 		{
 			this->setChangeInXPos(-ENEMY_CONSTS::WALK_SPEED);
 
-			this->playAnimation("MoveLeft");
+			//this->playAnimation("MoveLeft");
 			std::cout << "Less than x" << std::endl;
 		}
 
