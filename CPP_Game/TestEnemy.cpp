@@ -84,7 +84,7 @@ void TestEnemy::update(int elapsedTime, Player& player)
 			std::cout << "Less than x" << std::endl;
 		}
 
-		else if (player.getPlayerYPos() > this->y_)
+		if (player.getPlayerYPos() > this->y_)
 		{
 			this->setChangeInYPos(ENEMY_CONSTS::WALK_SPEED);
 
