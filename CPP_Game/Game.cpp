@@ -35,7 +35,8 @@ void Game::gameLoop()
 	topWall = SDL_Rect{ -60, -60, 1480, 10 };
 	leftWall = SDL_Rect{ -60, -30, 10, 700 };
 	rightWall = SDL_Rect{ 1430, -30, 10, 700 };
-	this->testEnemy = TestEnemy(graphics, Vector2(100, 100));
+	this->testEnemy1 = TestEnemy(graphics, Vector2(100, 100));
+	this->testEnemy2 = TestEnemy(graphics, Vector2(700, 100));
 	//this->enemy_ = SkeletonEnemy(graphics, Vector2(10,10));
 
 
@@ -109,23 +110,43 @@ void Game::gameLoop()
 			this->mainPlayer.stopMoving(this->mainPlayer.getDir());
 			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::UP)
 			{
-				std::cout << "ATTACK UP" << std::endl;
 				this->mainPlayer.attackUp();
+				if(collider.AABB(mainPlayer.getAttackHitBox(), testEnemy1.getEnemyHitBox()) == true) {
+					testEnemy1.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy2.getEnemyHitBox()) == true) {
+					testEnemy2.hp.Deduct(1);
+				}
 			}
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::DOWN)
 			{
-				std::cout << "ATTACK DOWN" << std::endl;
 				this->mainPlayer.attackDown();
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy1.getEnemyHitBox()) == true) {
+					testEnemy1.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy2.getEnemyHitBox()) == true) {
+					testEnemy2.hp.Deduct(1);
+				}
 			}
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::LEFT)
 			{
-				std::cout << "ATTACK LEFT" << std::endl;
 				this->mainPlayer.attackLeft();
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy1.getEnemyHitBox()) == true) {
+					testEnemy1.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy2.getEnemyHitBox()) == true) {
+					testEnemy2.hp.Deduct(1);
+				}
 			}
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::RIGHT)
 			{
-				std::cout << "ATTACK RIGHT" << std::endl;
 				this->mainPlayer.attackRight();
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy1.getEnemyHitBox()) == true) {
+					testEnemy1.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy2.getEnemyHitBox()) == true) {
+					testEnemy2.hp.Deduct(1);
+				}
 			}
 		}
 
@@ -146,7 +167,8 @@ void Game::draw(Graphics& graphics)
 	graphics.clear();
 
 	this->Level1.draw(graphics);
-	this->testEnemy.draw(graphics);
+	if (testEnemy1.hp.IsDead() == false) { this->testEnemy1.draw(graphics); }
+	if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.draw(graphics); }
 	this->mainPlayer.draw(graphics);
 	//this->enemy_.draw(graphics);
 	//this->enemy1.draw(graphics);
@@ -156,16 +178,38 @@ void Game::draw(Graphics& graphics)
 void Game::update(float elapsedTime)
 {
 
-	if (collider.AABB(mainPlayer.getPlayerHitBox(), bottomWall) == true ||
+	if (collider.AABB(mainPlayer.getPlayerHitBox(), bottomWall) == true || // wall collisions for the player
 		collider.AABB(mainPlayer.getPlayerHitBox(), topWall) == true ||
 		collider.AABB(mainPlayer.getPlayerHitBox(), leftWall) == true ||
 		collider.AABB(mainPlayer.getPlayerHitBox(), rightWall) == true)
 	{
 		this->mainPlayer.wallColliding(this->mainPlayer.getDir());
-		printf("Collision!\n");
+	}
+	if (collider.AABB(testEnemy1.getEnemyHitBox(), bottomWall) == true || // wall collision for enemy one
+		collider.AABB(testEnemy1.getEnemyHitBox(), topWall) == true ||
+		collider.AABB(testEnemy1.getEnemyHitBox(), leftWall) == true ||
+		collider.AABB(testEnemy1.getEnemyHitBox(), rightWall) == true)
+	{
+		this->testEnemy1.wallColliding();
+	}
+	if (collider.AABB(testEnemy2.getEnemyHitBox(), bottomWall) == true || // wall collision for enemy two
+		collider.AABB(testEnemy2.getEnemyHitBox(), topWall) == true ||
+		collider.AABB(testEnemy2.getEnemyHitBox(), leftWall) == true ||
+		collider.AABB(testEnemy2.getEnemyHitBox(), rightWall) == true)
+	{
+		this->testEnemy2.wallColliding();
+	}
+	if (collider.AABB(testEnemy1.getEnemyHitBox(), mainPlayer.getPlayerHitBox()) == true ||
+		collider.AABB(testEnemy1.getEnemyHitBox(), testEnemy2.getEnemyHitBox()) == true) { // enemy one player collision/enemy two collision
+		testEnemy1.wallColliding();
+	}
+	if (collider.AABB(testEnemy2.getEnemyHitBox(), mainPlayer.getPlayerHitBox()) == true ||
+		collider.AABB(testEnemy2.getEnemyHitBox(), testEnemy1.getEnemyHitBox()) == true) { // enemy two player collision/enemy one collision
+		testEnemy2.wallColliding();
 	}
 	this->mainPlayer.update(elapsedTime);
-	this->testEnemy.update(elapsedTime, this->mainPlayer);
+	if(testEnemy1.hp.IsDead() == false){ this->testEnemy1.update(elapsedTime, this->mainPlayer); }
+	if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.update(elapsedTime, this->mainPlayer); }
 
 	//this->enemy_.update(elapsedTime, mainPlayer);
 	//this->enemy1.update(elapsedTime);

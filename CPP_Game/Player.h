@@ -40,6 +40,7 @@ public:
 	void wallColliding(Direction facingPosition);
 	// getters & setters
 	SDL_Rect getPlayerHitBox() { return playerHitBox; }
+	SDL_Rect getAttackHitBox() { return attackHitBox; }
 	float getChangeInXPos() { return changeInXPos; }
 	float getChangeInYPos() { return changeInYPos; }
 
@@ -57,6 +58,7 @@ private:
 	float changeInXPos, changeInYPos;
 	float x; float y;
 	SDL_Rect playerHitBox;/////////////////////
+	SDL_Rect attackHitBox;
 	Direction facingPosition_;
 
 };

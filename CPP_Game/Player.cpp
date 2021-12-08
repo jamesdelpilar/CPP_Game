@@ -11,6 +11,7 @@ Player::Player()
 	changeInXPos = 0;
 	changeInYPos = 0;
 	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 10, 10};////////////////////////
+	attackHitBox = { static_cast<int>(x_ - 50), static_cast<int>(y_ - 50), 114, 114 };
 }
 
 Player::~Player()
@@ -79,21 +80,25 @@ void Player::moveUp()
 void Player::attackUp()
 {
 	this->playAnimation("AttackUp");
+	attackHitBox = { static_cast<int>(x_), static_cast<int>(y_), 32, -100 };
 }
 
 void Player::attackDown()
 {
 		this->playAnimation("AttackDown");
+		attackHitBox = { static_cast<int>(x_), static_cast<int>(y_ + 32), 32, 100 };
 }
 
 void Player::attackLeft()
 {
 		this->playAnimation("AttackLeft");
+		attackHitBox = { static_cast<int>(x_), static_cast<int>(y_), -100, 32 };
 }
 
 void Player::attackRight()
 {
 		this->playAnimation("AttackRight");
+		attackHitBox = { static_cast<int>(x_ + 32), static_cast<int>(y_), 100, 32 };
 }
 
 

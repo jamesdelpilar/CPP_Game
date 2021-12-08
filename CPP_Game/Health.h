@@ -12,6 +12,7 @@ public:
 	void Replanish(int damagePoints);
 	void Increase();
 	int getHP() { return HP; };
+	bool IsDead() { return isDead; }
 private:
 	int HP;
 	int maxHP;

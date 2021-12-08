@@ -33,7 +33,8 @@ private:
 
 	//SkeletonEnemy enemy_;
 	//Enemy enemy1;
-	TestEnemy testEnemy;
+	TestEnemy testEnemy1;
+	TestEnemy testEnemy2;
 	Player mainPlayer;
 	TileMap Level1;
 	

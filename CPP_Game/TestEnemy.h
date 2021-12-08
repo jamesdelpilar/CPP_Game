@@ -9,6 +9,7 @@
 
 class Graphics;
 class Player;
+class Health;
 using namespace globals;
 
 
@@ -35,6 +36,7 @@ public:
 	Health hp;
 
 private:
+	Direction facingPosition;
 	float startingPosX, startingPosY;
 
 	bool chaseState;
