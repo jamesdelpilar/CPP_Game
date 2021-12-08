@@ -40,10 +40,10 @@ void Player::setupAnimations()
 	this->addAnimation(4, 0, 128, "MoveRight", 64, 64, Vector2(0, 0));
 	this->addAnimation(4, 0, 0, "MoveDown", 64, 64, Vector2(0, 0));
 
-	this->addAnimation(4, 0, 510, "AttackUp", 64, 64, Vector2(0, 0));
-	this->addAnimation(4, 0, 369, "AttackLeft", 64, 64, Vector2(0, 0));
-	this->addAnimation(4, 0, 433, "AttackRight", 64, 64, Vector2(0, 0));
-	this->addAnimation(4, 0, 305, "AttackDown", 64, 64, Vector2(0, 0));
+	this->addAnimation(4, 0, 510, "AttackUp", 64, 64, Vector2(0, -40));
+	this->addAnimation(4, 0, 369, "AttackLeft", 64, 64, Vector2(0, -40));
+	this->addAnimation(4, 0, 433, "AttackRight", 64, 64, Vector2(0, -40));
+	this->addAnimation(4, 0, 305, "AttackDown", 64, 64, Vector2(0, -20));
 }
 
 void Player::animationComplete(string currentAnimation)
