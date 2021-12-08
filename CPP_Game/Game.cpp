@@ -33,7 +33,7 @@ void Game::gameLoop()
 	// Load Audio Files
 	Mix_Music* backgroundSound = Mix_LoadMUS("Assets/Sounds/Opening.mp3");
 	Mix_Chunk* playerAttack = Mix_LoadWAV("Assets/Sounds/hit.wav");
-	Mix_Chunk* playerWalk = Mix_LoadWAV("Assets/Sounds/walking.wav");
+	Mix_Chunk* playerWalk = Mix_LoadWAV("Assets/Sounds/footsteps.wav");
 
 
 	// Play Audio Files
