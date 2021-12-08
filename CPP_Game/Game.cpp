@@ -10,6 +10,7 @@ Game::Game()
 {
 	// Initializes everything (SDL2, SDL Mixer, SDL TTF, SDL Image)
 	SDL_Init(SDL_INIT_EVERYTHING);
+
 	this->gameLoop();
 }
 
@@ -25,6 +26,18 @@ void Game::gameLoop()
 
 	// Event Handler per frame
 	SDL_Event event;
+
+	// Start SDL Mixer
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+	// Load Audio Files
+	Mix_Music* backgroundSound = Mix_LoadMUS("Assets/Sounds/Opening.mp3");
+	Mix_Chunk* playerAttack = Mix_LoadWAV("Assets/Sounds/hit.wav");
+	Mix_Chunk* playerWalk = Mix_LoadWAV("Assets/Sounds/walking.wav");
+
+
+	// Play Audio Files
+	Mix_PlayMusic(backgroundSound, -1);
 
 	// Calling objects
 	//this->enemy1 = Enemy(graphics, 300, 100);
@@ -75,6 +88,7 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)*/))
 		{
 			this->mainPlayer.moveLeft();
+			Mix_PlayChannel(-1, playerWalk, 0); // SFX
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
@@ -84,6 +98,7 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)*/))
 		{
 			this->mainPlayer.moveRight();
+			Mix_PlayChannel(-1, playerWalk, 0); // SFX
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true &&
@@ -93,6 +108,7 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false)*/))
 		{
 			this->mainPlayer.moveDown();
+			Mix_PlayChannel(-1, playerWalk, 0); // SFX
 		}
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true &&
@@ -102,6 +118,7 @@ void Game::gameLoop()
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)*/))
 		{
 			this->mainPlayer.moveUp();
+			Mix_PlayChannel(-1, playerWalk, 0); // SFX
 		}
 
 		else if (!keyboardInput.isKeyHeld(SDL_SCANCODE_A) && !keyboardInput.isKeyHeld(SDL_SCANCODE_D) && !keyboardInput.isKeyHeld(SDL_SCANCODE_S)
@@ -111,6 +128,9 @@ void Game::gameLoop()
 			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::UP)
 			{
 				this->mainPlayer.attackUp();
+
+				Mix_PlayChannel(-1, playerAttack, 0); // SFX
+
 				if(collider.AABB(mainPlayer.getAttackHitBox(), testEnemy1.getEnemyHitBox()) == true) {
 					testEnemy1.hp.Deduct(1);
 				}
@@ -121,6 +141,9 @@ void Game::gameLoop()
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::DOWN)
 			{
 				this->mainPlayer.attackDown();
+
+				Mix_PlayChannel(-1, playerAttack, 0); // SFX
+
 				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy1.getEnemyHitBox()) == true) {
 					testEnemy1.hp.Deduct(1);
 				}
@@ -131,6 +154,9 @@ void Game::gameLoop()
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::LEFT)
 			{
 				this->mainPlayer.attackLeft();
+
+				Mix_PlayChannel(-1, playerAttack, 0); // SFX
+
 				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy1.getEnemyHitBox()) == true) {
 					testEnemy1.hp.Deduct(1);
 				}
@@ -141,6 +167,9 @@ void Game::gameLoop()
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::RIGHT)
 			{
 				this->mainPlayer.attackRight();
+
+				Mix_PlayChannel(-1, playerAttack, 0); // SFX
+
 				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy1.getEnemyHitBox()) == true) {
 					testEnemy1.hp.Deduct(1);
 				}
@@ -157,8 +186,16 @@ void Game::gameLoop()
 
 		this->draw(graphics);
 
+
 		/*std::cout << this->mainPlayer.getDir() << std::endl;*/
 	}
+
+	// Delete SFX after game loop
+	Mix_FreeMusic(backgroundSound);
+	Mix_FreeChunk(playerAttack);
+	Mix_FreeChunk(playerWalk);
+	Mix_CloseAudio();
+
 }
 
 
@@ -214,4 +251,5 @@ void Game::update(float elapsedTime)
 	//this->enemy_.update(elapsedTime, mainPlayer);
 	//this->enemy1.update(elapsedTime);
 	this->Level1.update(elapsedTime, this->mainPlayer);
+
 }
