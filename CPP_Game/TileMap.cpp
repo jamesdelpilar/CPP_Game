@@ -1,6 +1,5 @@
 #include "TileMap.h"
-
-#include "SkeletonEnemy.h"
+#include "SkeletonEnemy.h" 
 
 TileMap::TileMap()
 {

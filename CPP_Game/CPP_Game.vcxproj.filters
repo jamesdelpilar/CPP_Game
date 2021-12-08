@@ -133,7 +133,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="maps\Map1.tmx" />
     <None Include="Levels\Level1.tmx">
       <Filter>Source Files</Filter>
     </None>

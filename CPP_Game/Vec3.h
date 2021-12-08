@@ -1,7 +1,10 @@
 #ifndef VEC3_H
 #define VEC3_H
 
-class Vec3 {
+#include <iostream>
+
+class Vec3
+{
 public:
 	float x, y, z;
 

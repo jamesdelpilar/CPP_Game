@@ -1,17 +1,22 @@
 #include "Health.h"
-Health::Health() {
+
+Health::Health()
+{
 	maxHP = 3;
 	HP = maxHP;
 }
 
-Health::Health(int hitpoints) {
+Health::Health(int hitpoints)
+{
 	maxHP = hitpoints;
 	HP = maxHP;
 }
 
-Health::~Health() {}
+Health::~Health()
+{}
 
-void Health::Deduct(int damagePoints) {
+void Health::Deduct(int damagePoints)
+{
 	if (HP > 0) {
 		HP -= damagePoints;
 	}
@@ -20,12 +25,14 @@ void Health::Deduct(int damagePoints) {
 	}
 }
 
-void Health::Replanish(int damagePoints) {
+void Health::Replanish(int damagePoints)
+{
 	if (HP < maxHP) {
 		HP += damagePoints;
 	}
 }
 
-void Health::Increase() {
+void Health::Increase()
+{
 	maxHP += 1;
 }

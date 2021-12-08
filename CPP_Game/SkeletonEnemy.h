@@ -29,6 +29,5 @@ private:
 
 	float startingPosX, startingPosY;
 	bool isMoving;
-
 };
 

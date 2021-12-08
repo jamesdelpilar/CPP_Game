@@ -1,15 +1,17 @@
 #pragma once
 
+#include <cmath>
+#include "BaseEnemy.h"
+#include "Collision.h"
 #include "Globals.h"
 #include "Graphics.h"
-#include "BaseEnemy.h"
-#include "Player.h"
-#include "Collision.h"////////////////////////
 #include "Health.h"
+#include "Player.h"
 
 class Graphics;
-class Player;
 class Health;
+class Player;
+
 using namespace globals;
 
 

@@ -1,14 +1,14 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "Collision.h"
 #include "Globals.h"
 #include "Graphics.h"
-#include "SpriteAnimation.h"
-#include "Collision.h"////////////////////////
 #include "Health.h"
-
+#include "SpriteAnimation.h"
 
 class Graphics;
+
 using namespace globals;
 
 class Player : public SpriteAnimation
@@ -38,6 +38,7 @@ public:
 	// Stops animation and plays idle animation
 	void stopMoving(Direction facingPosition);
 	void wallColliding(Direction facingPosition);
+
 	// getters & setters
 	SDL_Rect getPlayerHitBox() { return playerHitBox; }
 	SDL_Rect getAttackHitBox() { return attackHitBox; }
@@ -57,9 +58,8 @@ public:
 private:
 	float changeInXPos, changeInYPos;
 	float x; float y;
-	SDL_Rect playerHitBox;/////////////////////
+	SDL_Rect playerHitBox;
 	SDL_Rect attackHitBox;
 	Direction facingPosition_;
-
 };
 #endif

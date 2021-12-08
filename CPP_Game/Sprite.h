@@ -1,7 +1,9 @@
 #pragma once
+
 #include <iostream>
-#include "globals.h"
+#include "Globals.h"
 #include "Graphics.h"
+
 class Graphics;
 
 class Sprite
@@ -21,6 +23,5 @@ protected:
 	SDL_Rect srcRect;
 	SDL_Texture* spriteSheet;
 	float x_, y_;
-
 };
 
