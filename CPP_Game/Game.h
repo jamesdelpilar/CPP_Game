@@ -12,6 +12,7 @@
 #include "BaseEnemy.h"
 #include "SkeletonEnemy.h"
 #include "TestEnemy.h"
+#include <SDL_mixer.h>
 
 //Forward Declaration
 class Graphics;
