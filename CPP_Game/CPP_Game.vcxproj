@@ -153,6 +153,7 @@
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SkeletonEnemy.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SkeletonEnemy.h" />
     <ClInclude Include="Sprite.h" />

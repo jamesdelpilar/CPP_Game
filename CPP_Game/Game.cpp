@@ -41,6 +41,8 @@ void Game::gameLoop()
 
 	// Calling objects
 	//this->enemy1 = Enemy(graphics, 300, 100);
+	menu = Menu::Menu();
+
 	this->Level1 = TileMap("Level1", Vector2(0,0), graphics);
 	this->mainPlayer = Player(graphics, 500, 500);
 

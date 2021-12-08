@@ -12,6 +12,7 @@
 #include "BaseEnemy.h"
 #include "SkeletonEnemy.h"
 #include "TestEnemy.h"
+#include "Menu.h"
 #include <SDL_mixer.h>
 
 //Forward Declaration
@@ -38,6 +39,7 @@ private:
 	TestEnemy testEnemy2;
 	Player mainPlayer;
 	TileMap Level1;
+	Menu menu;
 	
 	Collision collider;
 
