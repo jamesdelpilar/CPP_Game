@@ -6,13 +6,13 @@
 #include "KeyboardInput.h"
 #include "Player.h"
 #include "SpriteAnimation.h"
+#include "Sprite.h"
 #include "TileMap.h"
 #include "Collision.h"
 #include "Enemy.h"
 #include "BaseEnemy.h"
 #include "SkeletonEnemy.h"
 #include "TestEnemy.h"
-#include "Menu.h"
 #include <SDL_mixer.h>
 
 //Forward Declaration
@@ -39,7 +39,8 @@ private:
 	TestEnemy testEnemy2;
 	Player mainPlayer;
 	TileMap Level1;
-	Menu menu;
+	Sprite gameOver;
+	Sprite levelComplete;
 	
 	Collision collider;
 
