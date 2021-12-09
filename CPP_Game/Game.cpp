@@ -47,10 +47,10 @@ void Game::gameLoop()
 	//this->menu = Menu::Menu("Level1", Vector2(0, 0), graphics);
 	this->mainPlayer = Player(graphics, 500, 300);
 
-	bottomWall = SDL_Rect{ -60, 660, 1480, 10 };
-	topWall = SDL_Rect{ -60, -60, 1480, 10 };
-	leftWall = SDL_Rect{ -60, -30, 10, 700 };
-	rightWall = SDL_Rect{ 1430, -30, 10, 700 };
+	bottomWall = SDL_Rect{ -60, 630, 1480, 10 };
+	topWall = SDL_Rect{ -60, -30, 1480, 10 };
+	leftWall = SDL_Rect{ -30, -30, 10, 700 };
+	rightWall = SDL_Rect{ 1410, -30, 10, 700 };
 	this->testEnemy1 = TestEnemy(graphics, Vector2(50, 10));
 	this->testEnemy2 = TestEnemy(graphics, Vector2(900, 300));
 	this->testEnemy3 = TestEnemy(graphics, Vector2(50, 600));
