@@ -3,10 +3,10 @@
 #include <algorithm>
 #include <iostream>
 #include <cmath>
-#include <string>
-#include <sstream>
-#include <vector>
 #include <SDL.h>
+#include <sstream>
+#include <string>
+#include <vector>
 
 #include "BaseEnemy.h"
 #include "Globals.h"
@@ -14,7 +14,6 @@
 #include "Player.h"
 #include "Tile.h"
 #include "tinyxml2.h"
-
 
 using namespace tinyxml2;
 

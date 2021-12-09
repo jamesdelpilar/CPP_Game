@@ -1,4 +1,5 @@
 #include "TestEnemy.h"
+
 #include <cmath>
 
 namespace ENEMY_CONSTS
@@ -27,9 +28,7 @@ TestEnemy::TestEnemy()
 
 TestEnemy::~TestEnemy()
 {
-	/*delete &changeInXPos;
-	delete &changeInYPos;*/
-	//delete &facingPosition_;
+
 }
 
 TestEnemy::TestEnemy(Graphics& graphics, Vector2 spawnPoint) :
@@ -39,7 +38,8 @@ TestEnemy::TestEnemy(Graphics& graphics, Vector2 spawnPoint) :
 		startingPosY(spawnPoint.y),
 		isMoving(true),
 		chaseState(false),
-		isAttacking(false){
+		isAttacking(false)
+{
 	/*facingPosition_ = Direction::DOWN;*/
 	graphics.loadImage("Assets/Sprites/Skeleton_RedEye.png");
 	this->setupAnimations();

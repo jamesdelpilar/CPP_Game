@@ -86,10 +86,7 @@ void Game::gameLoop()
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_A) == true &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
-			mainPlayer.getChangeInYPos() == 0.0f 
-			 /*&&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)*/))
+			mainPlayer.getChangeInYPos() == 0.0f ))
 		{
 			this->mainPlayer.moveLeft();
 			Mix_PlayChannel(-1, playerWalk, 0); // SFX
@@ -97,9 +94,7 @@ void Game::gameLoop()
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_D) == true &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
-			mainPlayer.getChangeInYPos() == 0.0f/*&&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false)*/))
+			mainPlayer.getChangeInYPos() == 0.0f))
 		{
 			this->mainPlayer.moveRight();
 			Mix_PlayChannel(-1, playerWalk, 0); // SFX
@@ -107,9 +102,7 @@ void Game::gameLoop()
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_S) == true &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_W) == false) &&
-			mainPlayer.getChangeInXPos() == 0.0f/*&&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false)*/))
+			mainPlayer.getChangeInXPos() == 0.0f))
 		{
 			this->mainPlayer.moveDown();
 			Mix_PlayChannel(-1, playerWalk, 0); // SFX
@@ -117,9 +110,7 @@ void Game::gameLoop()
 
 		if ((keyboardInput.isKeyHeld(SDL_SCANCODE_W) == true &&
 			(keyboardInput.isKeyHeld(SDL_SCANCODE_S) == false) &&
-			mainPlayer.getChangeInXPos() == 0.0f/*&&
-			 (keyboardInput.isKeyHeld(SDL_SCANCODE_D) == false) &&
-			(keyboardInput.isKeyHeld(SDL_SCANCODE_A) == false)*/))
+			mainPlayer.getChangeInXPos() == 0.0f))
 		{
 			this->mainPlayer.moveUp();
 			Mix_PlayChannel(-1, playerWalk, 0); // SFX
@@ -127,7 +118,7 @@ void Game::gameLoop()
 
 		else if (!keyboardInput.isKeyHeld(SDL_SCANCODE_A) && !keyboardInput.isKeyHeld(SDL_SCANCODE_D) && !keyboardInput.isKeyHeld(SDL_SCANCODE_S)
 			&& !keyboardInput.isKeyHeld(SDL_SCANCODE_W))
-		{
+			{
 			this->mainPlayer.stopMoving(this->mainPlayer.getDir());
 			if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::UP)
 			{
@@ -142,6 +133,7 @@ void Game::gameLoop()
 					testEnemy2.hp.Deduct(1);
 				}
 			}
+
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::DOWN)
 			{
 				this->mainPlayer.attackDown();
@@ -155,6 +147,7 @@ void Game::gameLoop()
 					testEnemy2.hp.Deduct(1);
 				}
 			}
+
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::LEFT)
 			{
 				this->mainPlayer.attackLeft();
@@ -168,6 +161,7 @@ void Game::gameLoop()
 					testEnemy2.hp.Deduct(1);
 				}
 			}
+
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::RIGHT)
 			{
 				this->mainPlayer.attackRight();
@@ -189,12 +183,10 @@ void Game::gameLoop()
 		LAST_UPDATE_TIME = CURRENT_TIME_MS;
 
 		this->draw(graphics);
-
-
 		/*std::cout << this->mainPlayer.getDir() << std::endl;*/
 	}
 
-	// Delete SFX after game loop
+	// Delete Sound Mixer after Game Loop
 	Mix_FreeMusic(backgroundSound);
 	Mix_FreeChunk(playerAttack);
 	Mix_FreeChunk(playerWalk);
@@ -267,8 +259,6 @@ void Game::update(float elapsedTime)
 	if(testEnemy1.hp.IsDead() == false){ this->testEnemy1.update(elapsedTime, this->mainPlayer); }
 	if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.update(elapsedTime, this->mainPlayer); }
 
-	//this->enemy_.update(elapsedTime, mainPlayer);
-	//this->enemy1.update(elapsedTime);
 	this->Level1.update(elapsedTime, this->mainPlayer);
 
 }

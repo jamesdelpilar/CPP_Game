@@ -10,15 +10,13 @@ Player::Player()
 	facingPosition_ = Direction::DOWN;
 	changeInXPos = 0;
 	changeInYPos = 0;
-	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 10, 10};////////////////////////
+	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 10, 10};
 	attackHitBox = { static_cast<int>(x_ - 50), static_cast<int>(y_ - 50), 114, 114 };
 }
 
 Player::~Player()
 {
-	/*delete &changeInXPos;
-	delete &changeInYPos;*/
-	//delete &facingPosition_;
+
 }
 
 Player::Player(Graphics& graphics, float x, float y) : SpriteAnimation(graphics, "Assets/Sprites/PlayerMovement.png", 0, 0, 64, 64, x, y, 100)
@@ -49,6 +47,7 @@ void Player::setupAnimations()
 void Player::animationComplete(string currentAnimation)
 {
 }
+
 void Player::moveLeft()
 {
 	this->changeInXPos = -PLAYER_CONSTS::WALK_SPEED;
@@ -127,7 +126,7 @@ void Player::stopMoving(Direction facingPosition)
 
 }
 
-// temp solution for wall collisions
+// Wall collisions
 void Player::wallColliding(Direction facingPosition) {
 	switch (facingPosition)
 	{
@@ -152,7 +151,7 @@ void Player::update(float elapsedTime)
 {
 	this->x_ += this->changeInXPos * elapsedTime;
 	this->y_ += this->changeInYPos * elapsedTime;
-	this->playerHitBox = { static_cast<int>(this->x_), static_cast<int>(this->y_), 32, 32 }; //////////
+	this->playerHitBox = { static_cast<int>(this->x_), static_cast<int>(this->y_), 32, 32 }; 
 	SpriteAnimation::update(elapsedTime);
 }
 

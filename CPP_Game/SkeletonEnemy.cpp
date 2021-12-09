@@ -101,7 +101,6 @@ void SkeletonEnemy::setupAnimations()
 	this->addAnimation(3, 0, 32, "MoveRight", 24, 32, Vector2(0, 0));
 	this->addAnimation(3, 0, 64, "MoveDown", 24, 32, Vector2(0, 0));
 	this->addAnimation(3, 0, 96, "MoveLeft", 24, 32, Vector2(0, 0));
-
 }
 
 

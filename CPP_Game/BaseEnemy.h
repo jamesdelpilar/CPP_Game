@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Globals.h"
-#include "SpriteAnimation.h"
-#include "Collision.h"
 #include <string>
+#include "Collision.h"
+#include "Globals.h"
 #include "Player.h"
+#include "SpriteAnimation.h"
 
 class Game;
 class Graphics;
@@ -30,6 +30,7 @@ public:
 	// Stops animation and plays idle animation
 	void stopMoving();
 	void wallColliding();
+
 	// getters & setters
 	SDL_Rect getEnemyHitBox() { return enemyHitBox; }
 	SDL_Rect getFieldOfView() { return fieldOfView; }
@@ -41,9 +42,8 @@ public:
 
 private:
 	float changeInXPos, changeInYPos;
-	SDL_Rect enemyHitBox;/////////////////////
+	SDL_Rect enemyHitBox;
 	SDL_Rect fieldOfView;
 	Direction facingPosition_;
-
 };
 

@@ -1,11 +1,11 @@
 #pragma once
 
+#include <SDL.h>
 #include "Globals.h"
 #include "Graphics.h"
-#include <SDL.h>
 
-struct SDL_Texture;
 class Graphics;
+struct SDL_Texture;
 
 class Tile
 {
@@ -21,8 +21,5 @@ protected:
 	Vector2 size_;
 	Vector2 tilesetPosition_;
 	Vector2 position_;
-
-
-	
 };
 

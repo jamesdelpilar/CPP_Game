@@ -1,12 +1,13 @@
 #pragma once
 
+#include "Collision.h"
 #include "Globals.h"
 #include "Graphics.h"
-#include "SpriteAnimation.h"
-#include "Collision.h"////////////////////////
 #include "Health.h"
+#include "SpriteAnimation.h"
 
 class Graphics;
+
 using namespace globals;
 
 class Enemy : public SpriteAnimation
@@ -54,8 +55,7 @@ public:
 private:
 	float changeInXPos, changeInYPos;
 	float x; float y;
-	SDL_Rect playerHitBox;/////////////////////
+	SDL_Rect playerHitBox;
 	Direction facingPosition_;
-
 };
 

@@ -1,23 +1,20 @@
 #pragma once
 
-#include "Collision.h"
+#include <SDL_mixer.h>
 #include "BaseEnemy.h"
+#include "Enemy.h"
+#include "Collision.h"
 #include "Graphics.h"
 #include "KeyboardInput.h"
 #include "Player.h"
 #include "SpriteAnimation.h"
 #include "Sprite.h"
 #include "TileMap.h"
-#include "Collision.h"
-#include "Enemy.h"
-#include "BaseEnemy.h"
-#include "SkeletonEnemy.h"
 #include "TestEnemy.h"
 #include <SDL_mixer.h>
 
-//Forward Declaration
-class Graphics;
 class Collision;
+class Graphics;
 class Player;
 
 // Info for when the GAME runs
@@ -33,8 +30,6 @@ private:
 	void draw(Graphics& graphics);
 	void update(float elapsedTime);
 
-	//SkeletonEnemy enemy_;
-	//Enemy enemy1;
 	TestEnemy testEnemy1;
 	TestEnemy testEnemy2;
 	Player mainPlayer;

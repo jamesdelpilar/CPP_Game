@@ -1,17 +1,16 @@
 #pragma once
+
 #include <map>
-#include <string>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <string>
 #include "Globals.h"
-
 
 using std::map;
 using std::string;
 
-//Forward Declaration
-struct SDL_Window;
 struct SDL_Renderer;
+struct SDL_Window;
 
 class Graphics
 {
@@ -39,6 +38,5 @@ private:
 	SDL_Renderer* renderer_;
 
 	map<string, SDL_Surface*> spriteSheets_;
-
 };
 
