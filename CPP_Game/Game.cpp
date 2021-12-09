@@ -41,9 +41,11 @@ void Game::gameLoop()
 
 	// Calling objects
 	//this->enemy1 = Enemy(graphics, 300, 100);
-	menu = Menu::Menu();
 
 	this->Level1 = TileMap("Level1", Vector2(0,0), graphics);
+	this->gameOver = Sprite::Sprite(graphics, "Assets/Sprites/GameOver.png", 0, 0, 1480, 832, 0, 0);
+	this->levelComplete = Sprite::Sprite(graphics, "Assets/Sprites/LevelComplete.png", 0, 0, 1480, 833, 0, 0);
+	//this->menu = Menu::Menu("Level1", Vector2(0, 0), graphics);
 	this->mainPlayer = Player(graphics, 500, 500);
 
 	bottomWall = SDL_Rect{ -60, 660, 1480, 10 };
@@ -206,9 +208,24 @@ void Game::draw(Graphics& graphics)
 	graphics.clear();
 
 	this->Level1.draw(graphics);
-	if (testEnemy1.hp.IsDead() == false) { this->testEnemy1.draw(graphics); }
-	if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.draw(graphics); }
-	this->mainPlayer.draw(graphics);
+
+
+	if (testEnemy1.hp.IsDead() == false ||
+		testEnemy2.hp.IsDead() == false &&
+		mainPlayer.hp.IsDead() == false) {
+
+		if (testEnemy1.hp.IsDead() == false) { this->testEnemy1.draw(graphics); }
+		if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.draw(graphics); }
+		this->mainPlayer.draw(graphics);
+	}
+	else if (testEnemy1.hp.IsDead() == true &&
+			testEnemy2.hp.IsDead() == true) {
+		this->levelComplete.draw(graphics, 0, -100);
+	}
+	else if (mainPlayer.hp.IsDead() == true) {
+		this->gameOver.draw(graphics, 0, -100);
+	}
+	
 	//this->enemy_.draw(graphics);
 	//this->enemy1.draw(graphics);
 	
