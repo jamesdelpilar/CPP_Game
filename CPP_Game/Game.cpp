@@ -50,11 +50,11 @@ void Game::gameLoop()
 	topWall = SDL_Rect{ -60, -30, 1480, 10 };
 	leftWall = SDL_Rect{ -30, -30, 10, 700 };
 	rightWall = SDL_Rect{ 1410, -30, 10, 700 };
-	this->testEnemy1 = TestEnemy(graphics, Vector2(50, 10));
-	this->testEnemy2 = TestEnemy(graphics, Vector2(900, 300));
-	this->testEnemy3 = TestEnemy(graphics, Vector2(50, 600));
-	this->testEnemy4 = TestEnemy(graphics, Vector2(1400, 50));
-	this->testEnemy5 = TestEnemy(graphics, Vector2(1400, 600));
+	this->testEnemy1 = TestEnemy(graphics, Vector2(100, 50));
+	this->testEnemy2 = TestEnemy(graphics, Vector2(950, 350));
+	this->testEnemy3 = TestEnemy(graphics, Vector2(150, 500));
+	this->testEnemy4 = TestEnemy(graphics, Vector2(1300, 150));
+	this->testEnemy5 = TestEnemy(graphics, Vector2(1300, 500));
 
 	//this->enemy_ = SkeletonEnemy(graphics, Vector2(10,10));
 
