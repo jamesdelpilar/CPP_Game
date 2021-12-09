@@ -12,6 +12,7 @@ Player::Player()
 	changeInYPos = 0;
 	playerHitBox = {static_cast<int>(x_), static_cast<int>(y_), 10, 10};////////////////////////
 	attackHitBox = { static_cast<int>(x_ - 50), static_cast<int>(y_ - 50), 114, 114 };
+	hp = Health::Health(1);
 }
 
 Player::~Player()
