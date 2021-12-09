@@ -126,9 +126,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Levels\Level1.tmx">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>
