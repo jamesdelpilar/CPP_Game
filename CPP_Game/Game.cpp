@@ -203,19 +203,19 @@ void Game::draw(Graphics& graphics)
 
 
 	if (testEnemy1.hp.IsDead() == false ||
-		testEnemy2.hp.IsDead() == false &&
-		mainPlayer.hp.IsDead() == false) {
-
-		if (testEnemy1.hp.IsDead() == false) { this->testEnemy1.draw(graphics); }
-		if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.draw(graphics); }
-		this->mainPlayer.draw(graphics);
+		testEnemy2.hp.IsDead() == false) {
+		if (mainPlayer.hp.IsDead() == false) {
+			if (testEnemy1.hp.IsDead() == false) { this->testEnemy1.draw(graphics); }
+			if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.draw(graphics); }
+			this->mainPlayer.draw(graphics);
+		}
+		if (mainPlayer.hp.IsDead() == true) {
+			this->gameOver.draw(graphics, 0, -100);
+		}
 	}
 	else if (testEnemy1.hp.IsDead() == true &&
 			testEnemy2.hp.IsDead() == true) {
 		this->levelComplete.draw(graphics, 0, -100);
-	}
-	else if (mainPlayer.hp.IsDead() == true) {
-		this->gameOver.draw(graphics, 0, -100);
 	}
 	
 	//this->enemy_.draw(graphics);
