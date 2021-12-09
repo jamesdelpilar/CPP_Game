@@ -94,7 +94,7 @@ void TestEnemy::update(int elapsedTime, Player& player)
 		//// Chasing Player
 		if (chaseState == true) {
 
-			Vector2 direction = Vector2(player.getPlayerXPos() - this->getPlayerXPos(), player.getPlayerYPos() - this->getPlayerYPos());
+			Vector2 direction = Vector2((player.getPlayerXPos() + 16) - this->getPlayerXPos(), (player.getPlayerYPos() + 16) - this->getPlayerYPos());
 			float angle = atan2(direction.y, direction.x) * (180 / 3.14);
 			if (angle < 135.0f && angle > 45.0f) // up
 			{
@@ -158,7 +158,7 @@ void TestEnemy::update(int elapsedTime, Player& player)
 				this->setX(knockBack.x);
 				this->setY(knockBack.y);*/
 			}
-			if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == false) {
+			if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == false && isAttacking == true) {
 				isAttacking = false;
 			}
 		}
