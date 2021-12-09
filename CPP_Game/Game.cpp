@@ -35,7 +35,6 @@ void Game::gameLoop()
 	Mix_Chunk* playerAttack = Mix_LoadWAV("Assets/Sounds/hit.wav");
 	Mix_Chunk* playerWalk = Mix_LoadWAV("Assets/Sounds/footsteps.wav");
 
-
 	// Play Audio Files
 	Mix_PlayMusic(backgroundSound, -1);
 
