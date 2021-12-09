@@ -15,7 +15,7 @@ void Health::Deduct(int damagePoints) {
 	if (HP > 0) {
 		HP -= damagePoints;
 	}
-	if (HP == 0) {
+	if (HP <= 0) {
 		isDead = true;
 	}
 }
