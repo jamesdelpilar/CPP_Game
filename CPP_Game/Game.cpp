@@ -40,20 +40,23 @@ void Game::gameLoop()
 	Mix_PlayMusic(backgroundSound, -1);
 
 	// Calling objects
-	//this->enemy1 = Enemy(graphics, 300, 100);
 
 	this->Level1 = TileMap("Level1", Vector2(0,0), graphics);
 	this->gameOver = Sprite::Sprite(graphics, "Assets/Sprites/GameOver.png", 0, 0, 1480, 832, 0, 0);
 	this->levelComplete = Sprite::Sprite(graphics, "Assets/Sprites/LevelComplete.png", 0, 0, 1480, 833, 0, 0);
 	//this->menu = Menu::Menu("Level1", Vector2(0, 0), graphics);
-	this->mainPlayer = Player(graphics, 500, 500);
+	this->mainPlayer = Player(graphics, 500, 300);
 
 	bottomWall = SDL_Rect{ -60, 660, 1480, 10 };
 	topWall = SDL_Rect{ -60, -60, 1480, 10 };
 	leftWall = SDL_Rect{ -60, -30, 10, 700 };
 	rightWall = SDL_Rect{ 1430, -30, 10, 700 };
-	this->testEnemy1 = TestEnemy(graphics, Vector2(100, 100));
-	this->testEnemy2 = TestEnemy(graphics, Vector2(700, 100));
+	this->testEnemy1 = TestEnemy(graphics, Vector2(50, 10));
+	this->testEnemy2 = TestEnemy(graphics, Vector2(900, 300));
+	this->testEnemy3 = TestEnemy(graphics, Vector2(50, 600));
+	this->testEnemy4 = TestEnemy(graphics, Vector2(1400, 50));
+	this->testEnemy5 = TestEnemy(graphics, Vector2(1400, 600));
+
 	//this->enemy_ = SkeletonEnemy(graphics, Vector2(10,10));
 
 
@@ -132,6 +135,15 @@ void Game::gameLoop()
 				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy2.getEnemyHitBox()) == true) {
 					testEnemy2.hp.Deduct(1);
 				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy3.getEnemyHitBox()) == true) {
+					testEnemy3.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy4.getEnemyHitBox()) == true) {
+					testEnemy4.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy5.getEnemyHitBox()) == true) {
+					testEnemy5.hp.Deduct(1);
+				}
 			}
 
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::DOWN)
@@ -145,6 +157,15 @@ void Game::gameLoop()
 				}
 				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy2.getEnemyHitBox()) == true) {
 					testEnemy2.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy3.getEnemyHitBox()) == true) {
+					testEnemy3.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy4.getEnemyHitBox()) == true) {
+					testEnemy4.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy5.getEnemyHitBox()) == true) {
+					testEnemy5.hp.Deduct(1);
 				}
 			}
 
@@ -160,6 +181,15 @@ void Game::gameLoop()
 				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy2.getEnemyHitBox()) == true) {
 					testEnemy2.hp.Deduct(1);
 				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy3.getEnemyHitBox()) == true) {
+					testEnemy3.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy4.getEnemyHitBox()) == true) {
+					testEnemy4.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy5.getEnemyHitBox()) == true) {
+					testEnemy5.hp.Deduct(1);
+				}
 			}
 
 			else if (keyboardInput.isKeyHeld(SDL_SCANCODE_RETURN) == true && this->mainPlayer.getDir() == Direction::RIGHT)
@@ -173,6 +203,15 @@ void Game::gameLoop()
 				}
 				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy2.getEnemyHitBox()) == true) {
 					testEnemy2.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy3.getEnemyHitBox()) == true) {
+					testEnemy3.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy4.getEnemyHitBox()) == true) {
+					testEnemy4.hp.Deduct(1);
+				}
+				if (collider.AABB(mainPlayer.getAttackHitBox(), testEnemy5.getEnemyHitBox()) == true) {
+					testEnemy5.hp.Deduct(1);
 				}
 			}
 		}
@@ -203,10 +242,16 @@ void Game::draw(Graphics& graphics)
 
 
 	if (testEnemy1.hp.IsDead() == false ||
-		testEnemy2.hp.IsDead() == false) {
+		testEnemy2.hp.IsDead() == false ||
+		testEnemy3.hp.IsDead() == false ||
+		testEnemy4.hp.IsDead() == false ||
+		testEnemy5.hp.IsDead() == false) {
 		if (mainPlayer.hp.IsDead() == false) {
 			if (testEnemy1.hp.IsDead() == false) { this->testEnemy1.draw(graphics); }
 			if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.draw(graphics); }
+			if (testEnemy3.hp.IsDead() == false) { this->testEnemy3.draw(graphics); }
+			if (testEnemy4.hp.IsDead() == false) { this->testEnemy4.draw(graphics); }
+			if (testEnemy5.hp.IsDead() == false) { this->testEnemy5.draw(graphics); }
 			this->mainPlayer.draw(graphics);
 		}
 		if (mainPlayer.hp.IsDead() == true) {
@@ -214,7 +259,11 @@ void Game::draw(Graphics& graphics)
 		}
 	}
 	else if (testEnemy1.hp.IsDead() == true &&
-			testEnemy2.hp.IsDead() == true) {
+			 testEnemy2.hp.IsDead() == true &&
+			 testEnemy3.hp.IsDead() == true &&
+			 testEnemy4.hp.IsDead() == true &&
+			 testEnemy5.hp.IsDead() == true)
+	{
 		this->levelComplete.draw(graphics, 0, -100);
 	}
 	
@@ -258,6 +307,9 @@ void Game::update(float elapsedTime)
 	this->mainPlayer.update(elapsedTime);
 	if(testEnemy1.hp.IsDead() == false){ this->testEnemy1.update(elapsedTime, this->mainPlayer); }
 	if (testEnemy2.hp.IsDead() == false) { this->testEnemy2.update(elapsedTime, this->mainPlayer); }
+	if (testEnemy3.hp.IsDead() == false) { this->testEnemy3.update(elapsedTime, this->mainPlayer); }
+	if (testEnemy4.hp.IsDead() == false) { this->testEnemy4.update(elapsedTime, this->mainPlayer); }
+	if (testEnemy5.hp.IsDead() == false) { this->testEnemy5.update(elapsedTime, this->mainPlayer); }
 
 	this->Level1.update(elapsedTime, this->mainPlayer);
 

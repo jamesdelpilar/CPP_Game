@@ -86,13 +86,13 @@ void TestEnemy::update(int elapsedTime, Player& player)
 
 		// Enemy Field of View
 	//std::cout << this->getFieldOfView().x << " " << this->getFieldOfView().y << std::endl;
-		if (Collision::AABB(this->getFieldOfView(), player.getPlayerHitBox()) == true) {
+		/*if (Collision::AABB(this->getFieldOfView(), player.getPlayerHitBox()) == true) {
 			chaseState = true;
 			isMoving = false;
-		}
+		}*/
 
 		//// Chasing Player
-		if (chaseState == true) {
+		//if (chaseState == true) {
 
 			Vector2 direction = Vector2((player.getPlayerXPos() + 16) - this->getPlayerXPos(), (player.getPlayerYPos() + 16) - this->getPlayerYPos());
 			float angle = atan2(direction.y, direction.x) * (180 / 3.14);
@@ -161,10 +161,10 @@ void TestEnemy::update(int elapsedTime, Player& player)
 			if (Collision::AABB(this->getEnemyHitBox(), player.getPlayerHitBox()) == false && isAttacking == true) {
 				isAttacking = false;
 			}
-		}
-		if (chaseState == false) {
-			this->playAnimation("IdleDown");
-		}
+		//}
+		//if (chaseState == false) {
+		//	this->playAnimation("IdleDown");
+		//}
 		BaseEnemy::update(elapsedTime, player);
 		SpriteAnimation::update(elapsedTime);
 

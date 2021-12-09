@@ -32,6 +32,10 @@ private:
 
 	TestEnemy testEnemy1;
 	TestEnemy testEnemy2;
+	TestEnemy testEnemy3;
+	TestEnemy testEnemy4;
+	TestEnemy testEnemy5;
+
 	Player mainPlayer;
 	TileMap Level1;
 	Sprite gameOver;
