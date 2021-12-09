@@ -50,8 +50,6 @@ void SpriteAnimation::update(int elapsedTime)
 
 void SpriteAnimation::draw(Graphics& graphics, int x, int y)
 {
-
-
 	if (this->visible_)
 	{
 		SDL_Rect destinationRectangle;
